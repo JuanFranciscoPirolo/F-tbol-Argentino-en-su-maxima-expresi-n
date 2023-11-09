@@ -1,0 +1,33 @@
+C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\FutbolArgentino\bin\Debug\net6.0\FutbolArgentino.deps.json
+C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\FutbolArgentino\bin\Debug\net6.0\FutbolArgentino.dll
+C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\FutbolArgentino\bin\Debug\net6.0\FutbolArgentino.pdb
+C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.AssemblyInfoInputs.cache
+C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.AssemblyInfo.cs
+C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.csproj.CoreCompileInputs.cache
+C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.dll
+C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\refint\FutbolArgentino.dll
+C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.pdb
+C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\ref\FutbolArgentino.dll
+C:\Users\profe\Desktop\Pirolo.JuanFrancisco\FutbolArgentino\bin\Debug\net6.0\FutbolArgentino.deps.json
+C:\Users\profe\Desktop\Pirolo.JuanFrancisco\FutbolArgentino\bin\Debug\net6.0\FutbolArgentino.dll
+C:\Users\profe\Desktop\Pirolo.JuanFrancisco\FutbolArgentino\bin\Debug\net6.0\FutbolArgentino.pdb
+C:\Users\profe\Desktop\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\profe\Desktop\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.AssemblyInfoInputs.cache
+C:\Users\profe\Desktop\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.AssemblyInfo.cs
+C:\Users\profe\Desktop\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.csproj.CoreCompileInputs.cache
+C:\Users\profe\Desktop\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.dll
+C:\Users\profe\Desktop\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\refint\FutbolArgentino.dll
+C:\Users\profe\Desktop\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.pdb
+C:\Users\profe\Desktop\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\ref\FutbolArgentino.dll
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\FutbolArgentino\bin\Debug\net6.0\FutbolArgentino.deps.json
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\FutbolArgentino\bin\Debug\net6.0\FutbolArgentino.dll
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\FutbolArgentino\bin\Debug\net6.0\FutbolArgentino.pdb
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.AssemblyInfoInputs.cache
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.AssemblyInfo.cs
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.csproj.CoreCompileInputs.cache
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.dll
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\refint\FutbolArgentino.dll
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\FutbolArgentino.pdb
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\FutbolArgentino\obj\Debug\net6.0\ref\FutbolArgentino.dll

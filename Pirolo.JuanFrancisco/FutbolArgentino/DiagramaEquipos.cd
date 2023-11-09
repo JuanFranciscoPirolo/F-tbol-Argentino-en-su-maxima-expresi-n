@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FutbolArgentino.Boca">
+    <Position X="1.5" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAEAAACAAAAAgAAABAAAEAAAABABAA=</HashCode>
+      <FileName>Boca.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FutbolArgentino.MiColeccion&lt;T&gt;">
+    <Position X="14.25" Y="3.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAQAAQAEAAAAAAAAAAAAACCAAAAAAAiA=</HashCode>
+      <FileName>MiColeccion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FutbolArgentino.NuevoEquipoFutbol">
+    <Position X="10.5" Y="5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>NuevoEquipoFutbol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FutbolArgentino.Racing">
+    <Position X="3" Y="8.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AABAAABAAAAQQAAEEAAAAAAAAAQAABAEAAAAAAAABAA=</HashCode>
+      <FileName>Racing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FutbolArgentino.River">
+    <Position X="9.75" Y="8.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BAAAQAAAAAAQAAAEEAAAAAQAAAQAABAEAAAAAAAABAA=</HashCode>
+      <FileName>River.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pirolo.JuanFrancisco.EquipoFutbol">
+    <Position X="6.5" Y="3.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>BAAgAAAAICAAAAAggAAAAAABAEAAAZlAAAAJAAQABAA=</HashCode>
+      <FileName>EquipoFutbol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Presidentes">
+    <Position X="12.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAAIAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enumeradores.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

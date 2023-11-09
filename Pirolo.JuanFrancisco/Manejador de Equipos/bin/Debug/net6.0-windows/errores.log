@@ -1,0 +1,167 @@
+Error: There was an error generating the XML document.
+StackTrace:    at System.Xml.Serialization.XmlSerializer.Serialize(XmlWriter xmlWriter, Object o, XmlSerializerNamespaces namespaces, String encodingStyle, String id)
+   at System.Xml.Serialization.XmlSerializer.Serialize(Stream stream, Object o)
+   at Manejador_de_Equipos.frmEquipos.SerializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 353
+
+Error: There was an error generating the XML document.
+StackTrace:    at System.Xml.Serialization.XmlSerializer.Serialize(XmlWriter xmlWriter, Object o, XmlSerializerNamespaces namespaces, String encodingStyle, String id)
+   at System.Xml.Serialization.XmlSerializer.Serialize(Stream stream, Object o)
+   at Manejador_de_Equipos.frmEquipos.SerializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 353
+
+Error: There is an error in XML document (0, 0).
+StackTrace:    at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(Stream stream)
+   at Manejador_de_Equipos.frmEquipos.DeserializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 397
+
+Error: There is an error in XML document (2, 2).
+StackTrace:    at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(Stream stream)
+   at Manejador_de_Equipos.frmEquipos.DeserializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 400
+
+Error: There is an error in XML document (2, 2).
+StackTrace:    at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(Stream stream)
+   at Manejador_de_Equipos.frmEquipos.DeserializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 406
+
+Error: FutbolArgentino.NuevoEquipoFutbol cannot be serialized because it does not have a parameterless constructor.
+StackTrace:    at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeScope.GetTypeDesc(Type type, MemberInfo source, Boolean directReference, Boolean throwOnError)
+   at System.Xml.Serialization.ModelScope.GetTypeModel(Type type, Boolean directReference)
+   at System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   at Manejador_de_Equipos.frmEquipos.SerializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 366
+
+Error: There is an error in XML document (2, 2).
+StackTrace:    at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(Stream stream)
+   at Manejador_de_Equipos.frmEquipos.DeserializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 406
+
+Error: FutbolArgentino.NuevoEquipoFutbol cannot be serialized because it does not have a parameterless constructor.
+StackTrace:    at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeScope.GetTypeDesc(Type type, MemberInfo source, Boolean directReference, Boolean throwOnError)
+   at System.Xml.Serialization.ModelScope.GetTypeModel(Type type, Boolean directReference)
+   at System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   at Manejador_de_Equipos.frmEquipos.SerializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 366
+
+Error: There is an error in XML document (2, 2).
+StackTrace:    at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(Stream stream)
+   at Manejador_de_Equipos.frmEquipos.DeserializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 405
+
+Error: FutbolArgentino.NuevoEquipoFutbol cannot be serialized because it does not have a parameterless constructor.
+StackTrace:    at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeScope.GetTypeDesc(Type type, MemberInfo source, Boolean directReference, Boolean throwOnError)
+   at System.Xml.Serialization.ModelScope.GetTypeModel(Type type, Boolean directReference)
+   at System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   at Manejador_de_Equipos.frmEquipos.SerializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 363
+
+Error: There is an error in XML document (2, 2).
+StackTrace:    at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(Stream stream)
+   at Manejador_de_Equipos.frmEquipos.DeserializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 405
+
+Error: FutbolArgentino.NuevoEquipoFutbol cannot be serialized because it does not have a parameterless constructor.
+StackTrace:    at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeScope.GetTypeDesc(Type type, MemberInfo source, Boolean directReference, Boolean throwOnError)
+   at System.Xml.Serialization.ModelScope.GetTypeModel(Type type, Boolean directReference)
+   at System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   at Manejador_de_Equipos.frmEquipos.SerializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 363
+
+Error: FutbolArgentino.NuevoEquipoFutbol cannot be serialized because it does not have a parameterless constructor.
+StackTrace:    at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeScope.GetTypeDesc(Type type, MemberInfo source, Boolean directReference, Boolean throwOnError)
+   at System.Xml.Serialization.ModelScope.GetTypeModel(Type type, Boolean directReference)
+   at System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   at Manejador_de_Equipos.frmEquipos.DeserializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 404
+
+Error: FutbolArgentino.NuevoEquipoFutbol cannot be serialized because it does not have a parameterless constructor.
+StackTrace:    at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeScope.GetTypeDesc(Type type, MemberInfo source, Boolean directReference, Boolean throwOnError)
+   at System.Xml.Serialization.ModelScope.GetTypeModel(Type type, Boolean directReference)
+   at System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   at Manejador_de_Equipos.frmEquipos.SerializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 367
+
+Error: There is an error in XML document (2, 2).
+StackTrace:    at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(Stream stream)
+   at Manejador_de_Equipos.frmEquipos.DeserializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 401
+
+Error: FutbolArgentino.NuevoEquipoFutbol cannot be serialized because it does not have a parameterless constructor.
+StackTrace:    at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeScope.GetTypeDesc(Type type, MemberInfo source, Boolean directReference, Boolean throwOnError)
+   at System.Xml.Serialization.ModelScope.GetTypeModel(Type type, Boolean directReference)
+   at System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   at Manejador_de_Equipos.frmEquipos.SerializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 361
+
+Error: There is an error in XML document (2, 2).
+StackTrace:    at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(Stream stream)
+   at Manejador_de_Equipos.frmEquipos.DeserializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 401
+
+Error: FutbolArgentino.NuevoEquipoFutbol cannot be serialized because it does not have a parameterless constructor.
+StackTrace:    at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeScope.GetTypeDesc(Type type, MemberInfo source, Boolean directReference, Boolean throwOnError)
+   at System.Xml.Serialization.ModelScope.GetTypeModel(Type type, Boolean directReference)
+   at System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   at Manejador_de_Equipos.frmEquipos.SerializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 354
+
+Error: Unable to cast object of type 'System.String' to type 'FutbolArgentino.NuevoEquipoFutbol'.
+StackTrace:    at Manejador_de_Equipos.frmEquipos.SerializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 358
+
+Error: FutbolArgentino.NuevoEquipoFutbol cannot be serialized because it does not have a parameterless constructor.
+StackTrace:    at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeDesc.CheckSupported()
+   at System.Xml.Serialization.TypeScope.GetTypeDesc(Type type, MemberInfo source, Boolean directReference, Boolean throwOnError)
+   at System.Xml.Serialization.ModelScope.GetTypeModel(Type type, Boolean directReference)
+   at System.Xml.Serialization.XmlReflectionImporter.ImportTypeMapping(Type type, XmlRootAttribute root, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type, String defaultNamespace)
+   at System.Xml.Serialization.XmlSerializer..ctor(Type type)
+   at Manejador_de_Equipos.frmEquipos.SerializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 366
+
+Error: There is an error in XML document (0, 0).
+StackTrace:    at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(Stream stream)
+   at Manejador_de_Equipos.frmEquipos.SerializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 349
+
+Error: There is an error in XML document (0, 0).
+StackTrace:    at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(Stream stream)
+   at Manejador_de_Equipos.frmEquipos.SerializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 348
+
+Error: There is an error in XML document (2, 2).
+StackTrace:    at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(Stream stream)
+   at Manejador_de_Equipos.frmEquipos.DeserializarColeccion() in C:\Users\profe\source\repos\VLLC\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 400
+
+Error: Collection was modified; enumeration operation may not execute.
+StackTrace:    at System.Collections.Generic.List`1.Enumerator.MoveNext()
+   at Manejador_de_Equipos.frmEquipos.SerializarColeccion() in C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 347
+
+Error: There is an error in XML document (2, 2).
+StackTrace:    at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+   at System.Xml.Serialization.XmlSerializer.Deserialize(Stream stream)
+   at Manejador_de_Equipos.frmEquipos.DeserializarColeccion() in C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\Manejador de Equipos\Form1.cs:line 395
+
