@@ -37,7 +37,7 @@ namespace Manejador_de_Equipos
             {
                 usuario.nombre = "";
                 usuario.RegistrarAcceso(usuarioAutenticado.nombre);
-                frmEquipos equipos = new frmEquipos(fechaInicioSesion, usuarioAutenticado.nombre);
+                frmEquipos equipos = new frmEquipos(fechaInicioSesion, usuarioAutenticado.nombre, usuarioAutenticado.perfil);
                 this.Hide();
                 equipos.Show();
                 InicioSesionExitoso = true;

@@ -14,7 +14,8 @@ namespace FutbolArgentino
     /// 
     [Serializable]
 
-
+    //crear primero base de datos
+    //sealed no se puede heredar
     public class MiColeccion<T>
     {
         public List<T> elementos = new List<T>();

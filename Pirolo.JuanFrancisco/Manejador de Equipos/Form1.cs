@@ -4,17 +4,23 @@ using System.Drawing.Text;
 using Manejador_de_Equipos;
 using System.Xml.Serialization;
 using Pirolo.JuanFrancisco;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Manejador_de_Equipos
 {
     public partial class frmEquipos : Form
     {
+        private bool usuarioPuedeCrear = false;
+        private bool usuarioPuedeLeer = false;
+        private bool usuarioPuedeActualizar = false;
+        private bool usuarioPuedeEliminar = false;
         private bool intentarNuevamente = false;
         private bool guardadoExitoso = false;
         private bool saveDialogOpened = false;
         private List<NuevoEquipoFutbol> equiposColeccion;
-
+        private string perfilUsuario;
         private DateTime fechaInicioSesion;
+        private string perfil;
         private string nombre;
         private SaveFileDialog saveDialog;
 
@@ -25,17 +31,20 @@ namespace Manejador_de_Equipos
         /// </summary>
         /// <param name="fechaInicioSesion">La fecha de inicio de sesión del usuario.</param>
         /// <param name="nombre">El nombre del usuario.</param>
-        public frmEquipos(DateTime fechaInicioSesion, string nombre)
+
+
+        public frmEquipos(DateTime fechaInicioSesion, string nombre, string perfil)
         {
             InitializeComponent();
             this.MaximizeBox = false;
             this.fechaInicioSesion = fechaInicioSesion;
             this.nombre = nombre;
+            this.perfil = perfil;
             equiposColeccion = new List<NuevoEquipoFutbol>();
             saveDialog = new SaveFileDialog();
-            saveDialog.Filter = "XML Files (.xml)|*.xml";
+            saveDialog.Filter = "XML Files (.xml)|*.xml"; 
+            
         }
-
 
         /// <summary>
         /// Maneja el evento de cierre del formulario, mostrando un mensaje de confirmación antes de cerrar la aplicación.
@@ -126,24 +135,31 @@ namespace Manejador_de_Equipos
         /// <param name="e">Argumentos del evento.</param>
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
-
-            frmAgregarEquipo NuevoEquipo = new frmAgregarEquipo(equiposColeccion, this); // Pasa una referencia de frmEquipos
-            if (lstEquipos.SelectedItem != null)
+            if (usuarioPuedeCrear || usuarioPuedeActualizar) //administrador o supervisor
             {
-                int indiceSeleccionado = lstEquipos.SelectedIndex;
-                NuevoEquipo.IndiceSeleccionado = indiceSeleccionado;
-                NuevoEquipo.modoActualizacion = true;
-            }
-            NuevoEquipo.FormClosed += (s, args) =>
-            {
-                if (!NuevoEquipo.formularioIniciado)
+                
+                frmAgregarEquipo NuevoEquipo = new frmAgregarEquipo(equiposColeccion, this); // Pasa una referencia de frmEquipos
+                if (lstEquipos.SelectedItem != null)
                 {
-                    this.Show();
+                    int indiceSeleccionado = lstEquipos.SelectedIndex;
+                    NuevoEquipo.IndiceSeleccionado = indiceSeleccionado;
+                    NuevoEquipo.modoActualizacion = true;
                 }
-            };
+                NuevoEquipo.FormClosed += (s, args) =>
+                {
+                    if (!NuevoEquipo.formularioIniciado)
+                    {
+                        this.Show();
+                    }
+                };
 
-            NuevoEquipo.Show();
-            this.Hide();
+                NuevoEquipo.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("No tienes permisos para crear un equipo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         //error en guardado y modificar
 
@@ -154,6 +170,27 @@ namespace Manejador_de_Equipos
         /// <param name="e">Argumentos del evento.</param>
         private void frmEquipos_Load_1(object sender, EventArgs e)
         {
+            if(perfil == "administrador")
+            {
+                usuarioPuedeCrear = true;
+                usuarioPuedeLeer = true;
+                usuarioPuedeActualizar = true;
+                usuarioPuedeEliminar = true;
+            }
+            else if(perfil == "supervisor")
+            {
+                usuarioPuedeEliminar = false;
+                usuarioPuedeCrear = true;
+                usuarioPuedeLeer = true;
+                usuarioPuedeActualizar = true;
+            }
+            else if(perfil == "vendedor")
+            {
+                usuarioPuedeEliminar = false;
+                usuarioPuedeCrear = false;
+                usuarioPuedeLeer = true;
+                usuarioPuedeActualizar = false;
+            }
             lblInformacion.Text = $"{nombre} - {fechaInicioSesion:yy/MM/yyyy}";
             DeserializarColeccion();
 
@@ -198,21 +235,28 @@ namespace Manejador_de_Equipos
         /// <param name="e">Argumentos del evento.</param>
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (lstEquipos.SelectedItem != null)
+            if (usuarioPuedeEliminar)
             {
-                string elementoSeleccionado = lstEquipos.SelectedItem.ToString();
-
-                // Mostrar un cuadro de diálogo para confirmar la eliminación
-                DialogResult resultado = MessageBox.Show("¿Estás seguro que deseas eliminar este equipo?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (resultado == DialogResult.Yes)
+                if (lstEquipos.SelectedItem != null)
                 {
-                    lstEquipos.Items.Remove(lstEquipos.SelectedItem);
+                    string elementoSeleccionado = lstEquipos.SelectedItem.ToString();
+
+                    // Mostrar un cuadro de diálogo para confirmar la eliminación
+                    DialogResult resultado = MessageBox.Show("¿Estás seguro que deseas eliminar este equipo?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (resultado == DialogResult.Yes)
+                    {
+                        lstEquipos.Items.Remove(lstEquipos.SelectedItem);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ningún elemento seleccionado.");
                 }
             }
             else
             {
-                MessageBox.Show("Ningún elemento seleccionado.");
+                MessageBox.Show("No tienes permisos para crear un equipo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

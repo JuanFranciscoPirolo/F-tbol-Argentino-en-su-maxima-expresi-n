@@ -73,3 +73,28 @@ C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.Juan
 C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador de Equipos.pdb
 C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador de Equipos.genruntimeconfig.cache
 C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.RecPP\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\ref\Manejador de Equipos.dll
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\bin\Debug\net6.0-windows\Manejador de Equipos.exe
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\bin\Debug\net6.0-windows\Manejador de Equipos.deps.json
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\bin\Debug\net6.0-windows\Manejador de Equipos.runtimeconfig.json
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\bin\Debug\net6.0-windows\Manejador de Equipos.dll
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\bin\Debug\net6.0-windows\Manejador de Equipos.pdb
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\bin\Debug\net6.0-windows\FutbolArgentino.dll
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\bin\Debug\net6.0-windows\FutbolArgentino.pdb
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador de Equipos.csproj.AssemblyReference.cache
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador_de_Equipos.frmEquipos.resources
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador_de_Equipos.frmLogin.resources
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador_de_Equipos.frmAgregarEquipo.resources
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador_de_Equipos.frmInfoEquipos.resources
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador_de_Equipos.InformacionUsuarioscs.resources
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador_de_Equipos.Properties.Resources.resources
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador de Equipos.csproj.GenerateResource.cache
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador de Equipos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador de Equipos.AssemblyInfoInputs.cache
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador de Equipos.AssemblyInfo.cs
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador de Equipos.csproj.CoreCompileInputs.cache
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador de Equipos.csproj.CopyComplete
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador de Equipos.dll
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\refint\Manejador de Equipos.dll
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador de Equipos.pdb
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\Manejador de Equipos.genruntimeconfig.cache
+C:\Users\profe\Desktop\Carpetas de GitHub\Pirolo.JuanFrancisco.SegundoParcial\Pirolo.JuanFrancisco\Manejador de Equipos\obj\Debug\net6.0-windows\ref\Manejador de Equipos.dll

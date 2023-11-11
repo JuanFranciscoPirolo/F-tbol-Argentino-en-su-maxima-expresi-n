@@ -7,13 +7,15 @@ namespace Manejador_de_Equipos
 {
     public class Usuario
     {
-
-        static string apellido { get; set; }
         public string nombre { get; set; } 
-        static int legajo { get; set; }
         public string correo { get; set; }
         public string clave { get; set; }
-        static string perfil { get; set; }
+        public string perfil { get; set; }
+
+        public Usuario() 
+        {
+            
+        }
 
 
         /// <summary>
@@ -31,6 +33,7 @@ namespace Manejador_de_Equipos
             {
                 string json = File.ReadAllText(@"../../../../Manejador de Equipos\Usuarios.json");
                 usuarios = JsonSerializer.Deserialize<List<Usuario>>(json);
+
             }
             catch (Exception ex)
             {
@@ -45,10 +48,13 @@ namespace Manejador_de_Equipos
                 {
                     return usuario;
                 }
+
             }
 
             return null;
         }
+
+
 
         /// <summary>
         /// Registra el acceso de un usuario en el archivo de registro de usuarios.
