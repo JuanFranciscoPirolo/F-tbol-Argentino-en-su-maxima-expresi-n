@@ -5,11 +5,14 @@ using Manejador_de_Equipos;
 using System.Xml.Serialization;
 using Pirolo.JuanFrancisco;
 using System.Security.Cryptography.X509Certificates;
+using System.Globalization;
+using System.Text;
 
 namespace Manejador_de_Equipos
 {
-    public partial class frmEquipos : Form
+    public partial class frmEquipos : Form, IAcciones
     {
+        private bool segundaConfirmacionMostrada = false;
         private bool usuarioPuedeCrear = false;
         private bool usuarioPuedeLeer = false;
         private bool usuarioPuedeActualizar = false;
@@ -18,7 +21,7 @@ namespace Manejador_de_Equipos
         private bool guardadoExitoso = false;
         private bool saveDialogOpened = false;
         private List<NuevoEquipoFutbol> equiposColeccion;
-        private string perfilUsuario;
+        private MiColeccion<NuevoEquipoFutbol> equiposDeColeccionGenerica;
         private DateTime fechaInicioSesion;
         private string perfil;
         private string nombre;
@@ -41,6 +44,7 @@ namespace Manejador_de_Equipos
             this.nombre = nombre;
             this.perfil = perfil;
             equiposColeccion = new List<NuevoEquipoFutbol>();
+            equiposDeColeccionGenerica = new MiColeccion<NuevoEquipoFutbol>();
             saveDialog = new SaveFileDialog();
             saveDialog.Filter = "XML Files (.xml)|*.xml"; 
             
@@ -59,7 +63,7 @@ namespace Manejador_de_Equipos
 
         }
 
-        private bool segundaConfirmacionMostrada = false;
+        
 
         private void CerrarForm(FormClosingEventArgs e)
         {
@@ -114,14 +118,9 @@ namespace Manejador_de_Equipos
                 }
             }
         }
-
-
-
-        public void ActualizarEquipos()
+        public void ActualizarEquipos(MiColeccion<NuevoEquipoFutbol> miColeccion)
         {
-            // Actualiza tu lista de equipos en lstEquipos
-            lstEquipos.Items.Clear();
-            foreach (var equipo in equiposColeccion)
+            foreach (NuevoEquipoFutbol equipo in miColeccion.elementos)
             {
                 lstEquipos.Items.Add(equipo);
             }
@@ -138,7 +137,7 @@ namespace Manejador_de_Equipos
             if (usuarioPuedeCrear || usuarioPuedeActualizar) //administrador o supervisor
             {
                 
-                frmAgregarEquipo NuevoEquipo = new frmAgregarEquipo(equiposColeccion, this); // Pasa una referencia de frmEquipos
+                frmAgregarEquipo NuevoEquipo = new frmAgregarEquipo(); // Pasa una referencia de frmEquipos
                 if (lstEquipos.SelectedItem != null)
                 {
                     int indiceSeleccionado = lstEquipos.SelectedIndex;
@@ -160,6 +159,7 @@ namespace Manejador_de_Equipos
             {
                 MessageBox.Show("No tienes permisos para crear un equipo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
         //error en guardado y modificar
 
@@ -193,17 +193,6 @@ namespace Manejador_de_Equipos
             }
             lblInformacion.Text = $"{nombre} - {fechaInicioSesion:yy/MM/yyyy}";
             DeserializarColeccion();
-
-            /*
-            foreach (EquipoFutbol equipo in coleccionEquipos.OrdenarAscendentemente())
-            {
-                // Verificar si el equipo no está en lstEquipos
-                //if (!nombresEquiposEnLista.Any(item => item.Contains(equipo)))
-                //{
-                lstEquipos.Items.Add(equipo);
-            //}
-            }
-            */
 
         }
 
@@ -239,14 +228,17 @@ namespace Manejador_de_Equipos
             {
                 if (lstEquipos.SelectedItem != null)
                 {
-                    string elementoSeleccionado = lstEquipos.SelectedItem.ToString();
-
                     // Mostrar un cuadro de diálogo para confirmar la eliminación
                     DialogResult resultado = MessageBox.Show("¿Estás seguro que deseas eliminar este equipo?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
                     {
+                        // Obtén el equipo seleccionado
+                        NuevoEquipoFutbol equipoSeleccionado = (NuevoEquipoFutbol)lstEquipos.SelectedItem;
                         lstEquipos.Items.Remove(lstEquipos.SelectedItem);
+                        // Elimina el equipo de la colección genérica
+
+                        equiposDeColeccionGenerica -= equipoSeleccionado;
                     }
                 }
                 else
@@ -269,7 +261,6 @@ namespace Manejador_de_Equipos
         private void btnDeseleccionar_Click(object sender, EventArgs e)
         {
             lstEquipos.ClearSelected();
-
         }
 
         /// <summary>
@@ -286,7 +277,8 @@ namespace Manejador_de_Equipos
             }
             string topico = "PUNTOS";
             string ascendenteODescendente = rdAscendente.Checked ? "ascendente" : "descendente";
-            int resultado = OrdenarPorTopico(ascendenteODescendente, topico);
+            IAcciones acciones = this;
+            int resultado = acciones.OrdenarPorTopico(ascendenteODescendente, topico);
 
         }
 
@@ -305,16 +297,17 @@ namespace Manejador_de_Equipos
 
             string topico = "Hinchas";
             string ascendenteODescendente = rdAscendente.Checked ? "ascendente" : "descendente";
-            int resultado = OrdenarPorTopico(ascendenteODescendente, topico);
+            IAcciones acciones = this; // se crea usando la referencia del formulario, lo llama a traves de la interfaz
+            int resultado = acciones.OrdenarPorTopico(ascendenteODescendente, topico);
         }
 
         /// <summary>
-        /// Realiza la ordenación de la lista de equipos según el tópico y la dirección especificados.
+        /// Realiza el ordenamiento de la lista de equipos según el tópico y la dirección especificados.
         /// </summary>
         /// <param name="ascendenteODescendente">La dirección de la ordenación (ascendente o descendente).</param>
         /// <param name="topico">El tópico por el que se ordenarán los equipos.</param>
         /// <returns>0 en caso de éxito.</returns>
-        private int OrdenarPorTopico(string ascendenteODescendente, string topico)
+        int IAcciones.OrdenarPorTopico(string ascendenteODescendente, string topico)
         {
             List<string> equiposEnLista = new List<string>();
             foreach (var item in lstEquipos.Items)
@@ -467,19 +460,28 @@ namespace Manejador_de_Equipos
             InformacionUsuarioscs visualizador = new InformacionUsuarioscs();
             visualizador.Show();
         }
-        private List<NuevoEquipoFutbol> ObtenerEquipos()
+
+        MiColeccion<NuevoEquipoFutbol> IAcciones.ObtenerEquipos()
         {
-            List<NuevoEquipoFutbol> equiposTipoNuevo = new List<NuevoEquipoFutbol>();
+            MiColeccion<NuevoEquipoFutbol> equiposTipoNuevo = new MiColeccion<NuevoEquipoFutbol>();
 
             foreach (var item in lstEquipos.Items)
             {
                 if (item is NuevoEquipoFutbol nuevoEquipo)
                 {
-                    equiposTipoNuevo.Add(nuevoEquipo);
+                    equiposTipoNuevo += nuevoEquipo;
                 }
             }
 
             return equiposTipoNuevo;
+        }
+        string IAcciones.QuitarTildesYConvertirAMinusculas(string input)
+        {
+            return new string(
+                input.Normalize(NormalizationForm.FormD)
+                     .Where(c => CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                     .ToArray()
+            ).ToLower();
         }
     }
 

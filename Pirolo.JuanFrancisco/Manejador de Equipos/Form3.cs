@@ -16,24 +16,21 @@ using Microsoft.VisualBasic;
 
 namespace Manejador_de_Equipos
 {
-    public partial class frmAgregarEquipo : Form
+    public partial class frmAgregarEquipo : Form, IAcciones
     {
+        // Crear una instancia de MiColeccion con elementos de tipo int
+        private MiColeccion<NuevoEquipoFutbol> miColeccion = new MiColeccion<NuevoEquipoFutbol>();
 
         public NuevoEquipoFutbol equipo;
         public bool formularioIniciado { get; private set; }
         public bool modoActualizacion { get; set; }
         public int IndiceSeleccionado { get; set; }
 
-        // Lista de equipos
-        public List<NuevoEquipoFutbol> EquiposColeccion { get; set; }
-        private frmEquipos equiposForm;
 
-        public frmAgregarEquipo(List<NuevoEquipoFutbol> equiposColeccion, frmEquipos equiposForm)
+        public frmAgregarEquipo()
         {
             InitializeComponent();
             this.MaximizeBox = false;
-            EquiposColeccion = equiposColeccion;
-            this.equiposForm = equiposForm; // Guarda la referencia de frmEquipos
 
         }
 
@@ -49,7 +46,6 @@ namespace Manejador_de_Equipos
             if (modoActualizacion)
             {
                 this.Text = "Modificar equipo";
-                ObtenerDatosListBox();
                 btnAceptarActualizar.Text = "Modificar";
                 frmEquipos frmEquiposForm = Application.OpenForms["frmEquipos"] as frmEquipos;
                 if (frmEquiposForm != null)
@@ -115,26 +111,38 @@ namespace Manejador_de_Equipos
             }
             else
             {
+                
                 frmEquipos frmEquiposForm = Application.OpenForms["frmEquipos"] as frmEquipos;
                 if (frmEquiposForm != null)
                 {
-                    
-                    string nombreClub = QuitarTildesYConvertirAMinusculas(txtNombreClub.Text);
-
-                    foreach (var item in frmEquiposForm.lstEquipos.Items)
+                    try
                     {
-                        if (item is NuevoEquipoFutbol equipo)
+                        IAcciones acciones = this;
+                        string nombreClub = acciones.QuitarTildesYConvertirAMinusculas(txtNombreClub.Text);
+
+                        foreach (var item in frmEquiposForm.lstEquipos.Items)
                         {
-                            // Realiza la comprobación solo si el elemento es de tipo NuevoEquipoFutbol
-                            if (equipo.NombreEquipo.Equals(nombreClub, StringComparison.OrdinalIgnoreCase))
+                            if (item is NuevoEquipoFutbol equipo)
                             {
-                                // El nombre del club ya existe en la lista
-                                MessageBox.Show("El nombre del club ya existe en la lista.");
-                                return;
+                                // Realiza la comprobación solo si el elemento es de tipo NuevoEquipoFutbol
+                                if (equipo.NombreEquipo.Equals(nombreClub, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    // El nombre del club ya existe en la lista
+                                    MessageBox.Show("El nombre del club ya existe en la lista.");
+                                    return;
+                                }
                             }
                         }
                     }
-                        if (frmEquiposForm.lstEquipos.SelectedItem != null)
+                    catch (NullReferenceException ex)
+                    {
+                        MessageBox.Show("Error de referencia nula: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error general: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    if (frmEquiposForm.lstEquipos.SelectedItem != null)
                     {
                         //modo modificacion
                         if (frmEquiposForm.lstEquipos.SelectedItem is NuevoEquipoFutbol)
@@ -147,17 +155,17 @@ namespace Manejador_de_Equipos
                     }
                     else
                     {
+                        
                         NuevoEquipoFutbol nuevoEquipo = new NuevoEquipoFutbol(txtNombreClub.Text, txtApodoClub.Text, int.Parse(txtHinchas.Text), DateTime.Parse(txtPeorPartido.Text), int.Parse(txtPuntosClub.Text));
-                        // Agrega el nuevo equipo a la colección
-                        EquiposColeccion.Add(nuevoEquipo);
-                        // Llama al método en frmEquipos para actualizar la lista
-                        equiposForm.ActualizarEquipos();
-                        //modo creacion
-                        //frmEquiposForm.lstEquipos.Items.Add(nuevoEquipo);
+                        miColeccion += nuevoEquipo;
+                        frmEquiposForm.ActualizarEquipos(miColeccion);
                         
                         this.Close();
                     }
+                    
                 }
+
+
             }
         }
 
@@ -250,7 +258,7 @@ namespace Manejador_de_Equipos
         /// </summary>
         /// <param name="input">La cadena de entrada.</param>
         /// <returns>La cadena sin tildes y en minúsculas.</returns>
-        private string QuitarTildesYConvertirAMinusculas(string input)
+        string IAcciones.QuitarTildesYConvertirAMinusculas(string input)
         {
             return new string(
                 input.Normalize(NormalizationForm.FormD)
@@ -258,36 +266,21 @@ namespace Manejador_de_Equipos
                      .ToArray()
             ).ToLower();
         }
-
-        /// <summary>
-        /// Obtiene los datos del ListBox cuando se selecciona un elemento para actualización.
-        /// </summary>
-        private void ObtenerDatosListBox()
+        List<NuevoEquipoFutbol> IAcciones.ObtenerEquipos()
         {
-            string elementoSeleccionado = IndiceSeleccionado.ToString();
-            string[] partes = elementoSeleccionado.Split(new string[] { " || " }, StringSplitOptions.None);
+            List<NuevoEquipoFutbol> equiposTipoNuevo = new List<NuevoEquipoFutbol>();
+            return equiposTipoNuevo;
+        }
 
-            if (partes.Length == 3)
-            {
-                string nombreEquipo = partes[0];
-                string apodo = partes[1];
-                string hinchasInfo = partes[2];
-                string[] nombreYApodo = nombreEquipo.Split(new string[] { " || " }, StringSplitOptions.None);
-
-                if (nombreYApodo.Length == 2)
-                {
-                    string nombreClub = nombreYApodo[0];
-                    string apodoEquipo = nombreYApodo[1].Trim('\'');
-                    int cantidadHinchas = 0;
-
-                    string hinchasString = hinchasInfo.Replace("Hinchas: ", string.Empty);
-                    if (int.TryParse(hinchasString, out cantidadHinchas))
-                    {
-                        MessageBox.Show($"Nombre del Club: {nombreClub}\nApodo del Equipo: {apodoEquipo}\nCantidad de Hinchas: {cantidadHinchas}");
-                    }
-                }
-            }
-
+        
+        public void ActualizarEquipos(MiColeccion<NuevoEquipoFutbol> miColeccion)
+        {
+            throw new NotImplementedException();
+        }
+        
+        public int OrdenarPorTopico(string ascendenteODescendente, string topico)
+        {
+            throw new NotImplementedException();
         }
     }
 }

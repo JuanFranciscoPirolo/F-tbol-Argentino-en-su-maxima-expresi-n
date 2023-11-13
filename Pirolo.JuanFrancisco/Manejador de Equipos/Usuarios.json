@@ -38,5 +38,13 @@
     "correo": "admin@admin.com",
     "clave": "12345678",
     "perfil": "administrador"
+  },
+  {
+    "apellido": "Jordan",
+    "nombre": "Michael",
+    "legajo": 5,
+    "correo": "0",
+    "clave": "0",
+    "perfil": "administrador"
   }
 ]

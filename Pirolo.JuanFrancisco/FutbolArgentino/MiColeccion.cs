@@ -13,10 +13,7 @@ namespace FutbolArgentino
     /// <typeparam name="T">El tipo de elementos en la colección.</typeparam>
     /// 
     [Serializable]
-
-    //crear primero base de datos
-    //sealed no se puede heredar
-    public class MiColeccion<T>
+    public sealed class MiColeccion<T> where T : class
     {
         public List<T> elementos = new List<T>();
 
@@ -71,6 +68,7 @@ namespace FutbolArgentino
         public bool Contiene(T elemento)
         {
             return this.elementos.Contains(elemento);
+            
         }
 
         /// <summary>
@@ -103,28 +101,8 @@ namespace FutbolArgentino
             return !coleccion.Contiene(elemento);
         }
 
-        /// <summary>
-        /// Ordena los elementos de la colección en orden ascendente.
-        /// </summary>
-        /// <returns>Una nueva lista con los elementos ordenados en orden ascendente.</returns>
-        public List<T> OrdenarAscendentemente()
-        {
-            List<T> listaOrdenada = new List<T>(elementos);
-            return listaOrdenada;
-        }
 
 
-        /// <summary>
-        /// Ordena los elementos de la colección en orden descendente.
-        /// </summary>
-        /// <returns>Una nueva lista con los elementos ordenados en orden descendente.</returns>
-
-        public List<T> OrdenarDescendentemente()
-        {
-            List<T> listaOrdenada = new List<T>(elementos);
-            listaOrdenada.Sort((a, b) => Comparer<T>.Default.Compare(b, a));
-            return listaOrdenada;
-        }
 
     }
 }
