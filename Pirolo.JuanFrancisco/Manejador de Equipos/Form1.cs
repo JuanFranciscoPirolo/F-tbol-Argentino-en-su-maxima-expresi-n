@@ -239,6 +239,7 @@ namespace Manejador_de_Equipos
                         // Elimina el equipo de la colección genérica
 
                         equiposDeColeccionGenerica -= equipoSeleccionado;
+
                     }
                 }
                 else

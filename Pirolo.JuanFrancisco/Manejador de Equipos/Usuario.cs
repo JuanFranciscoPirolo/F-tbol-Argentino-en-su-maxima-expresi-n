@@ -35,12 +35,18 @@ namespace Manejador_de_Equipos
                 usuarios = JsonSerializer.Deserialize<List<Usuario>>(json);
 
             }
-            catch (Exception ex)
+            catch (JsonException ex)
             {
-                Console.WriteLine("Error al leer el archivo JSON: " + ex.Message);
-                return null;
-            }
 
+                throw new JsonLecturaException("Error al leer el archivo JSON", ex.Message);
+                
+            }
+            catch (IOException ex)
+            {
+                // Captura la excepción de E/S
+                Console.WriteLine($"Error de E/S al leer el archivo JSON: {ex.Message}");
+                throw new JsonLecturaException("Error de E/S al leer el archivo JSON", ex.Message);
+            }
 
             foreach (var usuario in usuarios)
             {
