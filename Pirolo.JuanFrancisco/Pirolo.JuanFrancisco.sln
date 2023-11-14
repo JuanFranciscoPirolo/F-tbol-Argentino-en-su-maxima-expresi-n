@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FutbolArgentino", "FutbolArgentino\FutbolArgentino.csproj", "{C09A908E-3AC2-4886-ABAA-E97EA033DD89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FutbolArgentino", "FutbolArgentino\FutbolArgentino.csproj", "{C09A908E-3AC2-4886-ABAA-E97EA033DD89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Manejador de Equipos", "Manejador de Equipos\Manejador de Equipos.csproj", "{C5C4F0F6-7476-48A3-8A21-725EF51E2C6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Manejador de Equipos", "Manejador de Equipos\Manejador de Equipos.csproj", "{C5C4F0F6-7476-48A3-8A21-725EF51E2C6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUnitario", "TestUnitario\TestUnitario.csproj", "{11DB8DDD-FD03-455E-A640-A09B27F1A6A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C5C4F0F6-7476-48A3-8A21-725EF51E2C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5C4F0F6-7476-48A3-8A21-725EF51E2C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5C4F0F6-7476-48A3-8A21-725EF51E2C6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11DB8DDD-FD03-455E-A640-A09B27F1A6A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11DB8DDD-FD03-455E-A640-A09B27F1A6A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11DB8DDD-FD03-455E-A640-A09B27F1A6A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11DB8DDD-FD03-455E-A640-A09B27F1A6A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

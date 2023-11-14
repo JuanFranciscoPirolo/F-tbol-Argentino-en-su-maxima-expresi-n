@@ -266,9 +266,9 @@ namespace Manejador_de_Equipos
                      .ToArray()
             ).ToLower();
         }
-        List<NuevoEquipoFutbol> IAcciones.ObtenerEquipos()
+        MiColeccion<NuevoEquipoFutbol> IAcciones.ObtenerEquipos()
         {
-            List<NuevoEquipoFutbol> equiposTipoNuevo = new List<NuevoEquipoFutbol>();
+            MiColeccion<NuevoEquipoFutbol> equiposTipoNuevo = new MiColeccion<NuevoEquipoFutbol>();
             return equiposTipoNuevo;
         }
 
