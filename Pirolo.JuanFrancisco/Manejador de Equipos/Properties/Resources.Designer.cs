@@ -91,6 +91,25 @@ namespace Manejador_de_Equipos.Properties {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Data Source=localhost\SQLEXPRESS;Initial Catalog=equipo_futbol_bd;Integrated Security=True;Trust Server Certificate=True.
+        /// </summary>
+        internal static string miConexion {
+            get {
+                return ResourceManager.GetString("miConexion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pasto {
+            get {
+                object obj = ResourceManager.GetObject("pasto", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap pngtree_aerial_aerial_view_of_football_field_image_994411 {

@@ -36,6 +36,25 @@ namespace Manejador_de_Equipos
         /// <param name="nombre">El nombre del usuario.</param>
 
 
+        static frmEquipos()
+        {
+            AccesoDatos ado = new AccesoDatos();
+            if (ado.PruebaConexion())
+            {
+                MessageBox.Show("Se conecto");
+            }
+            else
+            {
+                MessageBox.Show("No se conecto");
+            }
+
+            List<EquipoFutbol_Bd> listaEquipos = ado.ObtenerListaDatos();
+            foreach (EquipoFutbol_Bd equipo in listaEquipos)
+            {
+                MessageBox.Show(equipo.ToString());
+            }
+            //Console.ReadKey();
+        }
         public frmEquipos(DateTime fechaInicioSesion, string nombre, string perfil)
         {
             InitializeComponent();
