@@ -18,6 +18,9 @@ namespace Manejador_de_Equipos
 {
     public partial class frmAgregarEquipo : Form, IAcciones
     {
+        private bool cerrarFormularioAgregar = true;
+        private bool estasSeguro = true;
+        private bool equipoActualizado = false;
         private AccesoDatos ado;
         // Crear una instancia de MiColeccion con elementos de tipo int
         private MiColeccion<NuevoEquipoFutbol> miColeccion = new MiColeccion<NuevoEquipoFutbol>();
@@ -33,6 +36,7 @@ namespace Manejador_de_Equipos
             InitializeComponent();
             this.MaximizeBox = false;
             this.ado = new AccesoDatos();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
 
         }
 
@@ -47,6 +51,9 @@ namespace Manejador_de_Equipos
             formularioIniciado = true;
             if (modoActualizacion)
             {
+                txtNombreClub.ReadOnly = true;
+                txtNombreClub.Enabled = false;
+                txtNombreClub.BackColor = SystemColors.Control;  // Cambia el color de fondo para indicar que está deshabilitado
                 this.Text = "Modificar equipo";
                 btnAceptarActualizar.Text = "Modificar";
                 frmEquipos frmEquiposForm = Application.OpenForms["frmEquipos"] as frmEquipos;
@@ -71,26 +78,31 @@ namespace Manejador_de_Equipos
 
         }
 
-            /// <summary>
-            /// Maneja el evento FormClosing del formulario para mostrar una confirmación antes de cerrar.
-            /// </summary>
-            private void frmAgregarEquipo_FormClosing(object sender, FormClosingEventArgs e)
+        /// <summary>
+        /// Maneja el evento FormClosing del formulario para mostrar una confirmación antes de cerrar.
+        /// </summary>
+        private void frmAgregarEquipo_FormClosing(object sender, FormClosingEventArgs e)
         {
-
-            if (formularioIniciado)
+            if (equipoActualizado)
             {
-                DialogResult result = MessageBox.Show("¿Está seguro que desea volver al formulario inicial?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("¿Está seguro que desea modificar este equipo?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.No)
                 {
-
                     e.Cancel = true;
+                    estasSeguro = false;
                 }
                 else
                 {
+                    estasSeguro = true;
                     formularioIniciado = false;
                 }
-
             }
+            else
+            {
+                formularioIniciado = false;
+            }
+            
+
         }
 
 
@@ -122,22 +134,31 @@ namespace Manejador_de_Equipos
 
                     if (frmEquiposForm.lstEquipos.SelectedItem != null)
                     {
+                        
                         if (frmEquiposForm.lstEquipos.SelectedItem is NuevoEquipoFutbol)
                         {
                             NuevoEquipoFutbol nuevoEquipo = new NuevoEquipoFutbol(txtNombreClub.Text, txtApodoClub.Text, int.Parse(txtHinchas.Text), DateTime.Parse(txtPeorPartido.Text), int.Parse(txtPuntosClub.Text));
                             int indiceSeleccionado = frmEquiposForm.lstEquipos.SelectedIndex;
                             frmEquiposForm.lstEquipos.Items[indiceSeleccionado] = nuevoEquipo;
+                            
                             try
                             {
-                                ado.ModificarDato(nuevoEquipo);
-                                MessageBox.Show("Equipo modificado");
+                                equipoActualizado = true;
+                                this.Close();
+                                if (estasSeguro)
+                                {
+                                    ado.ModificarDato(nuevoEquipo);
+                                }
+
                             }
                             catch (Exception ex)
                             {
                                 MessageBox.Show($"Error al intentar modificar el equipo en la base de datos: {ex.Message}");
                             }
                         }
-                        this.Close(); // Cierra el formulario actual
+                        
+                        equipoActualizado = true;
+                        this.Close();
                     }
                     else
                     {
@@ -165,7 +186,9 @@ namespace Manejador_de_Equipos
                         // Realiza la operación de UI en el hilo principal utilizando Invoke
                         this.Invoke((MethodInvoker)delegate
                         {
+                            cerrarFormularioAgregar = true;
                             this.Close(); // Cierra el formulario actual
+                            
                         });
                     }
                 }

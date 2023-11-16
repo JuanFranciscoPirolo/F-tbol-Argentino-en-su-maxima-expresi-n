@@ -12,16 +12,13 @@ namespace Manejador_de_Equipos
 {
     public partial class frmEquipos : Form, IAcciones
     {
+
         private AccesoDatos ado;
-        private bool segundaConfirmacionMostrada = false;
         private bool usuarioPuedeCrear = false;
         private bool usuarioPuedeLeer = false;
         private bool usuarioPuedeActualizar = false;
         private bool usuarioPuedeEliminar = false;
-        private bool intentarNuevamente = false;
-        private bool guardadoExitoso = false;
         private bool saveDialogOpened = false;
-        private List<NuevoEquipoFutbol> equiposColeccion;
         private MiColeccion<NuevoEquipoFutbol> equiposDeColeccionGenerica;
         private DateTime fechaInicioSesion;
         private string perfil;
@@ -36,66 +33,6 @@ namespace Manejador_de_Equipos
         /// <param name="fechaInicioSesion">La fecha de inicio de sesión del usuario.</param>
         /// <param name="nombre">El nombre del usuario.</param>
 
-
-        static frmEquipos()
-        {
-            /*
-            AccesoDatos ado = new AccesoDatos();
-            if (ado.PruebaConexion())
-            {
-                MessageBox.Show("Se conecto");
-            }
-            else
-            {
-                MessageBox.Show("No se conecto");
-            }
-
-            List<NuevoEquipoFutbol> listaEquipos = ado.ObtenerListaDatos();
-            
-            NuevoEquipoFutbol nuevoEquipo = new NuevoEquipoFutbol();
-            nuevoEquipo.NombreEquipo = "Boca";
-            nuevoEquipo.Apodo = "Xeneize";
-            nuevoEquipo.CantidadHinchas = 1000000;
-            nuevoEquipo.PeorPartido = DateTime.Parse("1888-12-13");
-            nuevoEquipo.CantidadPuntos = 100;
-            */
-            /* AGREGAR DATOS
-            if (ado.AgregarDato(nuevoEquipo))
-            {
-                MessageBox.Show("Se ha agregado");
-            }
-            else
-            {
-                MessageBox.Show("No se ha agregado");
-            }
-            */
-            /*
-            nuevoEquipo.NombreEquipo = "Racing";
-            nuevoEquipo.Apodo = "Chaca";
-            nuevoEquipo.CantidadHinchas = 1000000;
-            nuevoEquipo.PeorPartido = DateTime.Parse("1888-12-13");
-            nuevoEquipo.CantidadPuntos = 100;
-            /*
-            if (ado.ModificarDato(nuevoEquipo))
-            {
-                MessageBox.Show("Se modifico");
-
-                foreach (NuevoEquipoFutbol equipo in listaEquipos)
-                {
-                    MessageBox.Show(equipo.ToString());
-                }
-            }
-            else
-            {
-                MessageBox.Show("No se modifico");
-            }
-            */
-            /*
-
-            */
-        }
-
-
         public frmEquipos(DateTime fechaInicioSesion, string nombre, string perfil)
         {
             InitializeComponent();
@@ -104,11 +41,10 @@ namespace Manejador_de_Equipos
             this.fechaInicioSesion = fechaInicioSesion;
             this.nombre = nombre;
             this.perfil = perfil;
-            equiposColeccion = new List<NuevoEquipoFutbol>();
             equiposDeColeccionGenerica = new MiColeccion<NuevoEquipoFutbol>();
             saveDialog = new SaveFileDialog();
-            saveDialog.Filter = "XML Files (.xml)|*.xml"; 
-            
+            saveDialog.Filter = "XML Files (.xml)|*.xml";
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         /// <summary>
@@ -119,19 +55,22 @@ namespace Manejador_de_Equipos
 
         private void frmEquipos_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
-            /*
-            DialogResult resultado0 = MessageBox.Show("¿Seguro que desea salir?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                DialogResult resultado = MessageBox.Show("¿Está seguro que desea cerrar el formulario?", "Confirmar cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resultado == DialogResult.No)
+                {
+                    e.Cancel = true;  // Cancelar el cierre del formulario
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
 
-            if (resultado0 == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
-            else
-            {
-                e.Cancel = true;
-            }
-            */
+
+
+
         }
 
         public void ActualizarEquipos(MiColeccion<NuevoEquipoFutbol> miColeccion)
@@ -271,16 +210,12 @@ namespace Manejador_de_Equipos
                         {
                             if (ado.EliminarDato(nuevoEquipo))
                             {
-                                MessageBox.Show("EQUIPO BORRADO");
-                            }
-                            else
-                            {
-                                MessageBox.Show("EQUIPO NO BORRADO");
+                                MessageBox.Show("Equipo eliminado correctamente", "Eliminación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show($"Error al intentar eliminar el equipo: {ex.Message}");
+                            MessageBox.Show($"Error al intentar eliminar el equipo: {ex.Message}", "Error de Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
 
 
