@@ -59,23 +59,30 @@ namespace Pirolo.JuanFrancisco
         public int CantidadHinchas
         {
             get { return this.cantidadHinchas; }
+            set { this.cantidadHinchas = value; }
+
         }
         public string Apodo
         {
             get { return this.apodo; }
+            set { this.apodo = value; }
         }
         public string NombreEquipo
         {
             get { return this.nombreEquipo; }
+            set { this.nombreEquipo = value; }
         }
         public DateTime MejorPartido
         {
             get { return this.mejorPartido; }
+            
+
         }
 
         public DateTime PeorPartido
         {
             get { return this.peorPartido; }
+            set { this.peorPartido = value; }
         }
         public DateTime FechaCreacion
         {
@@ -84,6 +91,7 @@ namespace Pirolo.JuanFrancisco
         public int CantidadPuntos
         {
             get { return this.cantidadPuntos; }
+            set { this.cantidadPuntos = value; }
         }
 
 

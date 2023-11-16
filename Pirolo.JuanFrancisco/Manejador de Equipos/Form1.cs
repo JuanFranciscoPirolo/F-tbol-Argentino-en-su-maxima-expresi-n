@@ -12,6 +12,7 @@ namespace Manejador_de_Equipos
 {
     public partial class frmEquipos : Form, IAcciones
     {
+        private AccesoDatos ado;
         private bool segundaConfirmacionMostrada = false;
         private bool usuarioPuedeCrear = false;
         private bool usuarioPuedeLeer = false;
@@ -26,7 +27,7 @@ namespace Manejador_de_Equipos
         private string perfil;
         private string nombre;
         private SaveFileDialog saveDialog;
-
+        
 
         /// <summary>
         /// Constructor del formulario frmEquipos. Inicializa el formulario, deshabilita la capacidad de maximizar,
@@ -38,6 +39,7 @@ namespace Manejador_de_Equipos
 
         static frmEquipos()
         {
+            /*
             AccesoDatos ado = new AccesoDatos();
             if (ado.PruebaConexion())
             {
@@ -48,16 +50,56 @@ namespace Manejador_de_Equipos
                 MessageBox.Show("No se conecto");
             }
 
-            List<EquipoFutbol_Bd> listaEquipos = ado.ObtenerListaDatos();
-            foreach (EquipoFutbol_Bd equipo in listaEquipos)
+            List<NuevoEquipoFutbol> listaEquipos = ado.ObtenerListaDatos();
+            
+            NuevoEquipoFutbol nuevoEquipo = new NuevoEquipoFutbol();
+            nuevoEquipo.NombreEquipo = "Boca";
+            nuevoEquipo.Apodo = "Xeneize";
+            nuevoEquipo.CantidadHinchas = 1000000;
+            nuevoEquipo.PeorPartido = DateTime.Parse("1888-12-13");
+            nuevoEquipo.CantidadPuntos = 100;
+            */
+            /* AGREGAR DATOS
+            if (ado.AgregarDato(nuevoEquipo))
             {
-                MessageBox.Show(equipo.ToString());
+                MessageBox.Show("Se ha agregado");
             }
-            //Console.ReadKey();
+            else
+            {
+                MessageBox.Show("No se ha agregado");
+            }
+            */
+            /*
+            nuevoEquipo.NombreEquipo = "Racing";
+            nuevoEquipo.Apodo = "Chaca";
+            nuevoEquipo.CantidadHinchas = 1000000;
+            nuevoEquipo.PeorPartido = DateTime.Parse("1888-12-13");
+            nuevoEquipo.CantidadPuntos = 100;
+            /*
+            if (ado.ModificarDato(nuevoEquipo))
+            {
+                MessageBox.Show("Se modifico");
+
+                foreach (NuevoEquipoFutbol equipo in listaEquipos)
+                {
+                    MessageBox.Show(equipo.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se modifico");
+            }
+            */
+            /*
+
+            */
         }
+
+
         public frmEquipos(DateTime fechaInicioSesion, string nombre, string perfil)
         {
             InitializeComponent();
+            this.ado = new AccesoDatos();
             this.MaximizeBox = false;
             this.fechaInicioSesion = fechaInicioSesion;
             this.nombre = nombre;
@@ -77,66 +119,21 @@ namespace Manejador_de_Equipos
 
         private void frmEquipos_FormClosing(object sender, FormClosingEventArgs e)
         {
+            Application.Exit();
+            /*
+            DialogResult resultado0 = MessageBox.Show("¿Seguro que desea salir?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            CerrarForm(e);
-
-        }
-
-        
-
-        private void CerrarForm(FormClosingEventArgs e)
-        {
-            if (intentarNuevamente)
+            if (resultado0 == DialogResult.Yes)
             {
-                // Si intentarNuevamente es verdadero, cierra la aplicación sin mostrar ningún mensaje.
                 Application.Exit();
             }
             else
             {
-                if (guardadoExitoso)
-                {
-                    // El guardado fue exitoso, se puede cerrar la aplicación.
-                    Application.Exit();
-                }
-                else
-                {
-                    if (segundaConfirmacionMostrada)
-                    {
-                        // La segunda confirmación ya se mostró, se debe salir de la aplicación
-                        Application.Exit();
-                    }
-                    else
-                    {
-                        // Muestra un mensaje de confirmación para guardar los datos.
-                        DialogResult resultado0 = MessageBox.Show("¿Deseas guardar los datos?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        if (resultado0 == DialogResult.Yes)
-                        {
-                            // El usuario desea guardar los datos.
-                            SerializarColeccion();
-                            if (guardadoExitoso)
-                            {
-                                // El guardado fue exitoso, se puede cerrar la aplicación.
-                                Application.Exit();
-                            }
-                            else
-                            {
-                                segundaConfirmacionMostrada = true;
-                                e.Cancel = true;
-                            }
-                        }
-                        else
-                        {
-                            // El usuario no desea guardar los datos, pero quiere cerrar la aplicación.
-                            intentarNuevamente = true;
-                            // Establecer guardadoExitoso en true para permitir el cierre sin guardar.
-                            guardadoExitoso = true;
-                            Application.Exit();
-                        }
-                    }
-                }
+                e.Cancel = true;
             }
+            */
         }
+
         public void ActualizarEquipos(MiColeccion<NuevoEquipoFutbol> miColeccion)
         {
             foreach (NuevoEquipoFutbol equipo in miColeccion.elementos)
@@ -211,10 +208,16 @@ namespace Manejador_de_Equipos
                 usuarioPuedeActualizar = false;
             }
             lblInformacion.Text = $"{nombre} - {fechaInicioSesion:yy/MM/yyyy}";
-            DeserializarColeccion();
+            ActualizarEquiposDatos(ado.ObtenerListaDatos());
+            //DeserializarColeccion();
 
         }
-
+        public void ActualizarEquiposDatos(List<NuevoEquipoFutbol> nuevaLista)
+        {
+            // Actualizar la lista de equipos en el formulario
+            lstEquipos.Items.Clear();
+            lstEquipos.Items.AddRange(nuevaLista.ToArray());
+        }
         /// <summary>
         /// Abre un formulario de información de equipos y gestiona su cierre.
         /// </summary>
@@ -258,6 +261,30 @@ namespace Manejador_de_Equipos
                         // Elimina el equipo de la colección genérica
 
                         equiposDeColeccionGenerica -= equipoSeleccionado;
+
+                        //NuevoEquipoFutbol otroEquipo = new NuevoEquipoFutbol(equipoSeleccionado.NombreEquipo,"",0, new DateTime(2023, 11, 15),2);
+                        
+                        NuevoEquipoFutbol nuevoEquipo = new NuevoEquipoFutbol();
+                        nuevoEquipo.NombreEquipo = equipoSeleccionado.NombreEquipo;
+
+                        try
+                        {
+                            if (ado.EliminarDato(nuevoEquipo))
+                            {
+                                MessageBox.Show("EQUIPO BORRADO");
+                            }
+                            else
+                            {
+                                MessageBox.Show("EQUIPO NO BORRADO");
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error al intentar eliminar el equipo: {ex.Message}");
+                        }
+
+
+
 
                     }
                 }

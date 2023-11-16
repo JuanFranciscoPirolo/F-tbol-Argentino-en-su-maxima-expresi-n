@@ -18,6 +18,7 @@ namespace Manejador_de_Equipos
 {
     public partial class frmAgregarEquipo : Form, IAcciones
     {
+        private AccesoDatos ado;
         // Crear una instancia de MiColeccion con elementos de tipo int
         private MiColeccion<NuevoEquipoFutbol> miColeccion = new MiColeccion<NuevoEquipoFutbol>();
 
@@ -31,6 +32,7 @@ namespace Manejador_de_Equipos
         {
             InitializeComponent();
             this.MaximizeBox = false;
+            this.ado = new AccesoDatos();
 
         }
 
@@ -111,63 +113,65 @@ namespace Manejador_de_Equipos
             }
             else
             {
-                
                 frmEquipos frmEquiposForm = Application.OpenForms["frmEquipos"] as frmEquipos;
                 if (frmEquiposForm != null)
                 {
-                    try
-                    {
-                        IAcciones acciones = this;
-                        string nombreClub = acciones.QuitarTildesYConvertirAMinusculas(txtNombreClub.Text);
+                    IAcciones acciones = this;
+                    string nombreClub = acciones.QuitarTildesYConvertirAMinusculas(txtNombreClub.Text);
 
-                        foreach (var item in frmEquiposForm.lstEquipos.Items)
-                        {
-                            if (item is NuevoEquipoFutbol equipo)
-                            {
-                                // Realiza la comprobación solo si el elemento es de tipo NuevoEquipoFutbol
-                                if (equipo.NombreEquipo.Equals(nombreClub, StringComparison.OrdinalIgnoreCase))
-                                {
-                                    // El nombre del club ya existe en la lista
-                                    MessageBox.Show("El nombre del club ya existe en la lista.");
-                                    return;
-                                }
-                            }
-                        }
-                    }
-                    catch (NullReferenceException ex)
-                    {
-                        MessageBox.Show("Error de referencia nula: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error general: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+
                     if (frmEquiposForm.lstEquipos.SelectedItem != null)
                     {
-                        //modo modificacion
                         if (frmEquiposForm.lstEquipos.SelectedItem is NuevoEquipoFutbol)
                         {
                             NuevoEquipoFutbol nuevoEquipo = new NuevoEquipoFutbol(txtNombreClub.Text, txtApodoClub.Text, int.Parse(txtHinchas.Text), DateTime.Parse(txtPeorPartido.Text), int.Parse(txtPuntosClub.Text));
                             int indiceSeleccionado = frmEquiposForm.lstEquipos.SelectedIndex;
                             frmEquiposForm.lstEquipos.Items[indiceSeleccionado] = nuevoEquipo;
+                            try
+                            {
+                                ado.ModificarDato(nuevoEquipo);
+                                MessageBox.Show("Equipo modificado");
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show($"Error al intentar modificar el equipo en la base de datos: {ex.Message}");
+                            }
                         }
-                        this.Close();
+                        this.Close(); // Cierra el formulario actual
                     }
                     else
                     {
-                        
                         NuevoEquipoFutbol nuevoEquipo = new NuevoEquipoFutbol(txtNombreClub.Text, txtApodoClub.Text, int.Parse(txtHinchas.Text), DateTime.Parse(txtPeorPartido.Text), int.Parse(txtPuntosClub.Text));
                         miColeccion += nuevoEquipo;
                         frmEquiposForm.ActualizarEquipos(miColeccion);
-                        
-                        this.Close();
+                        nuevoEquipo.NombreEquipo = nuevoEquipo.NombreEquipo;
+                        nuevoEquipo.Apodo = nuevoEquipo.Apodo;
+                        nuevoEquipo.CantidadHinchas = nuevoEquipo.CantidadHinchas;
+                        nuevoEquipo.PeorPartido = nuevoEquipo.PeorPartido;
+                        nuevoEquipo.CantidadPuntos = nuevoEquipo.CantidadPuntos;
+
+                        try
+                        {
+                            ado.AgregarDato(nuevoEquipo);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error al intentar agregar el equipo: {ex.Message}");
+                        }
+
+                        // Actualiza la lista en frmEquipos después de agregar el equipo
+                        frmEquiposForm.ActualizarEquiposDatos(ado.ObtenerListaDatos());
+
+                        // Realiza la operación de UI en el hilo principal utilizando Invoke
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            this.Close(); // Cierra el formulario actual
+                        });
                     }
-                    
                 }
-
-
             }
         }
+
 
         /// <summary>
         /// Verifica y maneja el cambio en el campo de nombre del club.

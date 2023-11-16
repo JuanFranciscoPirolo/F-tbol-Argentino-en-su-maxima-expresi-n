@@ -11,6 +11,7 @@ namespace FutbolArgentino
     [XmlRoot("EquipoFutbol")]
     public class NuevoEquipoFutbol : EquipoFutbol
     {
+        public int id;
         public NuevoEquipoFutbol()
         {
 
