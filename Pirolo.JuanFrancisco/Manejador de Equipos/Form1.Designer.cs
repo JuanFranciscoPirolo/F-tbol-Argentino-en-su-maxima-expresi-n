@@ -42,7 +42,11 @@
             btnDeseleccionar = new Button();
             button1 = new Button();
             button2 = new Button();
+            lblHoraActual = new Label();
+            pictureBoxDescanso = new PictureBox();
+            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDescanso).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -212,12 +216,51 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
+            // lblHoraActual
+            // 
+            lblHoraActual.AutoSize = true;
+            lblHoraActual.BackColor = SystemColors.ButtonHighlight;
+            lblHoraActual.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            lblHoraActual.ForeColor = SystemColors.HotTrack;
+            lblHoraActual.Location = new Point(1064, 9);
+            lblHoraActual.Name = "lblHoraActual";
+            lblHoraActual.Size = new Size(55, 23);
+            lblHoraActual.TabIndex = 22;
+            lblHoraActual.Text = "label1";
+            // 
+            // pictureBoxDescanso
+            // 
+            pictureBoxDescanso.BackColor = Color.LightGray;
+            pictureBoxDescanso.Image = (Image)resources.GetObject("pictureBoxDescanso.Image");
+            pictureBoxDescanso.Location = new Point(0, 1);
+            pictureBoxDescanso.Name = "pictureBoxDescanso";
+            pictureBoxDescanso.Size = new Size(1197, 747);
+            pictureBoxDescanso.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxDescanso.TabIndex = 23;
+            pictureBoxDescanso.TabStop = false;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.Firebrick;
+            button3.ForeColor = SystemColors.Control;
+            button3.ImageKey = "(ninguna)";
+            button3.Location = new Point(337, 666);
+            button3.Name = "button3";
+            button3.Size = new Size(161, 37);
+            button3.TabIndex = 24;
+            button3.Text = "Me voy al descanso...";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click;
+            // 
             // frmEquipos
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
             ClientSize = new Size(1186, 704);
+            Controls.Add(button3);
+            Controls.Add(pictureBoxDescanso);
+            Controls.Add(lblHoraActual);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(btnDeseleccionar);
@@ -238,6 +281,7 @@
             FormClosing += frmEquipos_FormClosing;
             Load += frmEquipos_Load_1;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxDescanso).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -260,5 +304,8 @@
         private Button btnDeseleccionar;
         private Button button1;
         private Button button2;
+        private Label lblHoraActual;
+        private PictureBox pictureBoxDescanso;
+        private Button button3;
     }
 }

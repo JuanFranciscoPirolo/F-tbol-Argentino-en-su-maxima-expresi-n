@@ -12,7 +12,7 @@ namespace Manejador_de_Equipos
 {
     public partial class frmEquipos : Form, IAcciones
     {
-
+        private GestorDescanso gestorDescanso;
         private AccesoDatos ado;
         private bool usuarioPuedeCrear = false;
         private bool usuarioPuedeLeer = false;
@@ -24,7 +24,7 @@ namespace Manejador_de_Equipos
         private string perfil;
         private string nombre;
         private SaveFileDialog saveDialog;
-        
+
 
         /// <summary>
         /// Constructor del formulario frmEquipos. Inicializa el formulario, deshabilita la capacidad de maximizar,
@@ -45,6 +45,9 @@ namespace Manejador_de_Equipos
             saveDialog = new SaveFileDialog();
             saveDialog.Filter = "XML Files (.xml)|*.xml";
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            gestorDescanso = new GestorDescanso();
+            gestorDescanso.ImagenCambiada += CambiarImagenDescanso;
+            pictureBoxDescanso.Visible = false;
         }
 
         /// <summary>
@@ -91,7 +94,7 @@ namespace Manejador_de_Equipos
         {
             if (usuarioPuedeCrear || usuarioPuedeActualizar) //administrador o supervisor
             {
-                
+
                 frmAgregarEquipo NuevoEquipo = new frmAgregarEquipo(); // Pasa una referencia de frmEquipos
                 if (lstEquipos.SelectedItem != null)
                 {
@@ -114,7 +117,7 @@ namespace Manejador_de_Equipos
             {
                 MessageBox.Show("No tienes permisos para crear un equipo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
         //error en guardado y modificar
 
@@ -125,21 +128,21 @@ namespace Manejador_de_Equipos
         /// <param name="e">Argumentos del evento.</param>
         private void frmEquipos_Load_1(object sender, EventArgs e)
         {
-            if(perfil == "administrador")
+            if (perfil == "administrador")
             {
                 usuarioPuedeCrear = true;
                 usuarioPuedeLeer = true;
                 usuarioPuedeActualizar = true;
                 usuarioPuedeEliminar = true;
             }
-            else if(perfil == "supervisor")
+            else if (perfil == "supervisor")
             {
                 usuarioPuedeEliminar = false;
                 usuarioPuedeCrear = true;
                 usuarioPuedeLeer = true;
                 usuarioPuedeActualizar = true;
             }
-            else if(perfil == "vendedor")
+            else if (perfil == "vendedor")
             {
                 usuarioPuedeEliminar = false;
                 usuarioPuedeCrear = false;
@@ -202,7 +205,7 @@ namespace Manejador_de_Equipos
                         equiposDeColeccionGenerica -= equipoSeleccionado;
 
                         //NuevoEquipoFutbol otroEquipo = new NuevoEquipoFutbol(equipoSeleccionado.NombreEquipo,"",0, new DateTime(2023, 11, 15),2);
-                        
+
                         NuevoEquipoFutbol nuevoEquipo = new NuevoEquipoFutbol();
                         nuevoEquipo.NombreEquipo = equipoSeleccionado.NombreEquipo;
 
@@ -379,7 +382,7 @@ namespace Manejador_de_Equipos
                             serializer.Serialize(stream, equiposParaSerializar);
                         }
 
-                        guardadoExitoso = true;
+
                     }
                     else
                     {
@@ -465,6 +468,36 @@ namespace Manejador_de_Equipos
                      .ToArray()
             ).ToLower();
         }
+        private void CambiarImagenDescanso(string rutaImagen)
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action<string>(CambiarImagenDescanso), rutaImagen);
+                return;
+            }
+
+            // Actualiza la imagen en el PictureBox
+            pictureBoxDescanso.ImageLocation = rutaImagen;
+        }
+        private bool fotoVisible = false; // Variable de control para la visibilidad de la foto
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            // Invierte el valor de la variable de control
+            fotoVisible = !fotoVisible;
+
+            if (fotoVisible)
+            {
+                // Muestra la foto
+                pictureBoxDescanso.Visible = true;
+            }
+            else
+            {
+                // Oculta la foto
+                pictureBoxDescanso.Visible = false;
+            }
+        }
     }
+
 
 }
