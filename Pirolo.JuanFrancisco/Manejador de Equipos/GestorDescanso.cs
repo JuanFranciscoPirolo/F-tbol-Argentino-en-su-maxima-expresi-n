@@ -34,13 +34,20 @@ namespace Manejador_de_Equipos
 
         private void CambiarImagenes()
         {
-            while (true)
+            try
             {
-                // Cambia la imagen actual
-                MostrarSiguienteImagen();
+                while (true)
+                {
+                    // Cambia la imagen actual
+                    MostrarSiguienteImagen();
 
-                // Duerme el hilo durante un tiempo determinado (por ejemplo, 5 segundos)
-                Thread.Sleep(5000);
+                    // Duerme el hilo durante un tiempo determinado (por ejemplo, 5 segundos)
+                    Thread.Sleep(5000);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Error al mostrar las imagenes{ex}");
             }
         }
 

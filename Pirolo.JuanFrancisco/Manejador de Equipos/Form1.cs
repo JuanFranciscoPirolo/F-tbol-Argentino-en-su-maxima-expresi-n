@@ -24,7 +24,7 @@ namespace Manejador_de_Equipos
         private string perfil;
         private string nombre;
         private SaveFileDialog saveDialog;
-
+        private bool fotoVisible = false; // Variable de control para la visibilidad de la foto
 
         /// <summary>
         /// Constructor del formulario frmEquipos. Inicializa el formulario, deshabilita la capacidad de maximizar,
@@ -48,6 +48,7 @@ namespace Manejador_de_Equipos
             gestorDescanso = new GestorDescanso();
             gestorDescanso.ImagenCambiada += CambiarImagenDescanso;
             pictureBoxDescanso.Visible = false;
+
         }
 
         /// <summary>
@@ -476,10 +477,12 @@ namespace Manejador_de_Equipos
                 return;
             }
 
+            
             // Actualiza la imagen en el PictureBox
             pictureBoxDescanso.ImageLocation = rutaImagen;
+
+
         }
-        private bool fotoVisible = false; // Variable de control para la visibilidad de la foto
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -490,11 +493,15 @@ namespace Manejador_de_Equipos
             {
                 // Muestra la foto
                 pictureBoxDescanso.Visible = true;
+                button3.Text = "Descansando...";
+
+
             }
             else
             {
                 // Oculta la foto
                 pictureBoxDescanso.Visible = false;
+                button3.Text = "Me voy al descanso...";
             }
         }
     }
