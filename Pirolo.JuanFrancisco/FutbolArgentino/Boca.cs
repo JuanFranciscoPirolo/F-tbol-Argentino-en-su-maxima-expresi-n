@@ -13,8 +13,6 @@ namespace FutbolArgentino
         private string idoloJugador;
         private string idoloTecnico;
 
-       
-
         public string IdoloJugador
         {
             get { return idoloJugador; }

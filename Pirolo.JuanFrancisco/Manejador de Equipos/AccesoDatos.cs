@@ -10,6 +10,10 @@ using FutbolArgentino;
 
 namespace Manejador_de_Equipos
 {
+    /// <summary>
+    /// Clase que maneja el acceso a datos para operaciones con la base de datos de equipos de fútbol.
+    /// </summary>
+    /// 
     public class AccesoDatos
     {
         private SqlConnection conexion; // objeto que permite conectarse a la base de datos.
@@ -23,11 +27,18 @@ namespace Manejador_de_Equipos
             AccesoDatos.cadena_conexion = Properties.Resources.miConexion; //para ahorrar codigo
         }
 
+        /// <summary>
+        /// Constructor de la clase AccesoDatos.
+        /// </summary>
         public AccesoDatos()
         {
             this.conexion = new SqlConnection(AccesoDatos.cadena_conexion);
         }
 
+        /// <summary>
+        /// Realiza una prueba de conexión con la base de datos.
+        /// </summary>
+        /// <returns>True si la conexión es exitosa; False en caso contrario.</returns>
         public bool PruebaConexion()
         {
             bool retorno = false;
@@ -43,8 +54,6 @@ namespace Manejador_de_Equipos
             }
             finally
             {
-                // si esta abierto lo cierra sino no.
-
                 if(this.conexion.State == System.Data.ConnectionState.Open)
                 {
                     this.conexion.Close();
@@ -53,6 +62,11 @@ namespace Manejador_de_Equipos
             }
             return retorno;
         }
+
+        /// <summary>
+        /// Obtiene una lista de datos de equipos de la base de datos.
+        /// </summary>
+        /// <returns>Lista de objetos NuevoEquipoFutbol.</returns>
         public List<NuevoEquipoFutbol> ObtenerListaDatos()
         {
             List<NuevoEquipoFutbol> lista = new List<NuevoEquipoFutbol>();
@@ -99,6 +113,11 @@ namespace Manejador_de_Equipos
 
         }
 
+        /// <summary>
+        /// Agrega un nuevo equipo a la base de datos.
+        /// </summary>
+        /// <param name="e">Objeto NuevoEquipoFutbol a agregar.</param>
+        /// <returns>True si la operación fue exitosa; False en caso contrario.</returns>
         public bool AgregarDato(NuevoEquipoFutbol e)
         {
             bool retorno = false;
@@ -142,6 +161,11 @@ namespace Manejador_de_Equipos
             return retorno;
         }
 
+        /// <summary>
+        /// Modifica un equipo existente en la base de datos.
+        /// </summary>
+        /// <param name="e">Objeto NuevoEquipoFutbol con los nuevos datos.</param>
+        /// <returns>True si la operación fue exitosa; False en caso contrario.</returns>
         public bool ModificarDato(NuevoEquipoFutbol e)
         {
             bool retorno = false;
@@ -182,6 +206,11 @@ namespace Manejador_de_Equipos
             return retorno;
         }
 
+        /// <summary>
+        /// Elimina un equipo de la base de datos.
+        /// </summary>
+        /// <param name="e">Objeto NuevoEquipoFutbol a eliminar.</param>
+        /// <returns>True si la operación fue exitosa; False en caso contrario.</returns>
         public bool EliminarDato(NuevoEquipoFutbol e)
         {
             bool retorno = false;
