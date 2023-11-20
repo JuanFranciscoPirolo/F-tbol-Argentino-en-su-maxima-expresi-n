@@ -4,10 +4,20 @@ using System.Windows.Forms;
 
 namespace Manejador_de_Equipos
 {
+    /// <summary>
+    /// Clase que gestiona la opinión del usuario sobre la aplicación y muestra un diálogo de clasificación después de un tiempo determinado.
+    /// </summary>
     public class OpinionUsuario
     {
         private Thread temporizadorThread;
+        /// <summary>
+        /// Evento que se dispara al clasificar la aplicación.
+        /// </summary>
         public event Action<string> ClasificarAplicacion;
+
+        /// <summary>
+        /// Inicializa una nueva instancia de la clase <see cref="OpinionUsuario"/>.
+        /// </summary>
         public OpinionUsuario()
         {
             InicializarTemporizador();
@@ -30,6 +40,9 @@ namespace Manejador_de_Equipos
         }
 
 
+        /// <summary>
+        /// Muestra un diálogo para que el usuario clasifique la aplicación.
+        /// </summary>
 
         public void MostrarDialogoClasificacion()
         {
@@ -50,8 +63,6 @@ namespace Manejador_de_Equipos
                     MessageBox.Show("Dato incorrecto. Por favor, ingrese un número entero del 1 al 5.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
-            // Aquí puedes procesar el valor ingresado después de que se ha validado correctamente
             ClasificarAplicacion?.Invoke($"Clasificación: {valorIngresado}");
         }
 
