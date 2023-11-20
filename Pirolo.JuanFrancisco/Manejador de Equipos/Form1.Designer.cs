@@ -52,9 +52,9 @@
             // 
             pictureBox1.BackColor = Color.LightGray;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(0, 1);
+            pictureBox1.Location = new Point(0, -12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(1197, 708);
+            pictureBox1.Size = new Size(1195, 721);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
@@ -218,10 +218,9 @@
             // pictureBoxDescanso
             // 
             pictureBoxDescanso.BackColor = Color.LightGray;
-            pictureBoxDescanso.Image = (Image)resources.GetObject("pictureBoxDescanso.Image");
-            pictureBoxDescanso.Location = new Point(0, 1);
+            pictureBoxDescanso.Location = new Point(0, 0);
             pictureBoxDescanso.Name = "pictureBoxDescanso";
-            pictureBoxDescanso.Size = new Size(1197, 747);
+            pictureBoxDescanso.Size = new Size(1195, 748);
             pictureBoxDescanso.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBoxDescanso.TabIndex = 23;
             pictureBoxDescanso.TabStop = false;
@@ -245,8 +244,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Highlight;
             ClientSize = new Size(1186, 704);
-            Controls.Add(button3);
             Controls.Add(pictureBoxDescanso);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(btnDeseleccionar);

@@ -25,7 +25,7 @@ namespace Manejador_de_Equipos
         private string nombre;
         private SaveFileDialog saveDialog;
         private bool fotoVisible = false; // Variable de control para la visibilidad de la foto
-
+        private OpinionUsuario opinionUsuario;
         /// <summary>
         /// Constructor del formulario frmEquipos. Inicializa el formulario, deshabilita la capacidad de maximizar,
         /// establece la fecha de inicio de sesión y el nombre del usuario, inicializa una colección de equipos y agrega equipos por defecto.
@@ -48,6 +48,8 @@ namespace Manejador_de_Equipos
             gestorDescanso = new GestorDescanso();
             gestorDescanso.ImagenCambiada += CambiarImagenDescanso;
             pictureBoxDescanso.Visible = false;
+            opinionUsuario = new OpinionUsuario();
+            opinionUsuario.ClasificarAplicacion += ManejarClasificacion;
 
         }
 
@@ -477,7 +479,7 @@ namespace Manejador_de_Equipos
                 return;
             }
 
-            
+
             // Actualiza la imagen en el PictureBox
             pictureBoxDescanso.ImageLocation = rutaImagen;
 
@@ -504,6 +506,16 @@ namespace Manejador_de_Equipos
                 button3.Text = "Me voy al descanso...";
             }
         }
+        private void ManejarClasificacion(string clasificacion)
+        {
+            MessageBox.Show($"Muchas gracias por compartir tu opinión, continúa disfrutando de esta aplicación");
+        }
+        private void MostrarDialogoClasificacion()
+        {
+            // Llama al método correspondiente de la instancia de OpinionUsuario
+            opinionUsuario.MostrarDialogoClasificacion();
+        }
+
     }
 
 
