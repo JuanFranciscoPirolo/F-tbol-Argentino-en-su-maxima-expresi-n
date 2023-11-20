@@ -10,8 +10,14 @@ using System.Text;
 
 namespace Manejador_de_Equipos
 {
+    
+
     public partial class frmEquipos : Form, IAcciones
     {
+        private delegate void CambiarImagenDescansoDelegate(string rutaImagen);
+        private event CambiarImagenDescansoDelegate ImagenCambiada;
+
+
         private GestorDescanso gestorDescanso;
         private AccesoDatos ado;
         private bool usuarioPuedeCrear = false;
@@ -36,6 +42,7 @@ namespace Manejador_de_Equipos
         public frmEquipos(DateTime fechaInicioSesion, string nombre, string perfil)
         {
             InitializeComponent();
+
             this.ado = new AccesoDatos();
             this.MaximizeBox = false;
             this.fechaInicioSesion = fechaInicioSesion;
@@ -476,16 +483,16 @@ namespace Manejador_de_Equipos
         {
             if (InvokeRequired)
             {
-                Invoke(new Action<string>(CambiarImagenDescanso), rutaImagen);
+                Invoke(new Action(() => CambiarImagenDescanso(rutaImagen)));
                 return;
             }
 
-
-            // Actualiza la imagen en el PictureBox
             pictureBoxDescanso.ImageLocation = rutaImagen;
 
-
+            // Disparar el evento ImagenCambiada
+            ImagenCambiada?.Invoke(rutaImagen);
         }
+
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -534,11 +541,6 @@ namespace Manejador_de_Equipos
             }));
         }
 
-        private void MostrarDialogoClasificacion()
-        {
-            // Llama al método correspondiente de la instancia de OpinionUsuario
-            opinionUsuario.MostrarDialogoClasificacion();
-        }
 
     }
 

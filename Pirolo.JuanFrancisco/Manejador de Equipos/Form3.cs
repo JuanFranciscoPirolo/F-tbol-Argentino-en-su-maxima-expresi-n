@@ -16,13 +16,16 @@ using Microsoft.VisualBasic;
 
 namespace Manejador_de_Equipos
 {
+    
     public partial class frmAgregarEquipo : Form, IAcciones
     {
+        private delegate bool ValidarFechaDelegate(string fecha);
+        private ValidarFechaDelegate validarFechaDelegate;
         private bool cerrarFormularioAgregar = true;
         private bool estasSeguro = true;
         private bool equipoActualizado = false;
         private AccesoDatos ado;
-        // Crear una instancia de MiColeccion con elementos de tipo int
+        
         private MiColeccion<NuevoEquipoFutbol> miColeccion = new MiColeccion<NuevoEquipoFutbol>();
 
         public NuevoEquipoFutbol equipo;
@@ -37,7 +40,7 @@ namespace Manejador_de_Equipos
             this.MaximizeBox = false;
             this.ado = new AccesoDatos();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-
+            validarFechaDelegate = new ValidarFechaDelegate(EsFechaPasada);
         }
 
 
@@ -256,7 +259,7 @@ namespace Manejador_de_Equipos
 
             if (DateTime.TryParseExact(fecha, formatoFecha, null, System.Globalization.DateTimeStyles.None, out _))
             {
-                return true;
+                return validarFechaDelegate(fecha);
             }
             else
             {

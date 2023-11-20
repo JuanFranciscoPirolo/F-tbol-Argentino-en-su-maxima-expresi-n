@@ -34,6 +34,7 @@ namespace Manejador_de_Equipos
 
         private void CambiarImagenes()
         {
+
             try
             {
                 while (true)
