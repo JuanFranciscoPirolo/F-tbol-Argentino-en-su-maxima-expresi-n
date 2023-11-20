@@ -56,7 +56,7 @@ namespace Manejador_de_Equipos
             {
                 txtNombreClub.ReadOnly = true;
                 txtNombreClub.Enabled = false;
-                txtNombreClub.BackColor = SystemColors.Control;  // Cambia el color de fondo para indicar que está deshabilitado
+                txtNombreClub.BackColor = SystemColors.Control; 
                 this.Text = "Modificar equipo";
                 btnAceptarActualizar.Text = "Modificar";
                 frmEquipos frmEquiposForm = Application.OpenForms["frmEquipos"] as frmEquipos;
@@ -190,7 +190,7 @@ namespace Manejador_de_Equipos
                         this.Invoke((MethodInvoker)delegate
                         {
                             cerrarFormularioAgregar = true;
-                            this.Close(); // Cierra el formulario actual
+                            this.Close();
                             
                         });
                     }
@@ -231,6 +231,9 @@ namespace Manejador_de_Equipos
         {
             validarStringDelegate.Invoke(txtApodoClub, "Ingrese un apodo correcto");
         }
+        /// <summary>
+        /// Verifica y maneja el ingreso de los números enteros.
+        /// </summary>
         private void ValidarEnteros(System.Windows.Forms.TextBox textBox, string errorMessage)
         {
             if (!string.IsNullOrWhiteSpace(textBox.Text) && !int.TryParse(textBox.Text, out _))
@@ -251,6 +254,11 @@ namespace Manejador_de_Equipos
             }
         }
 
+        /// <summary>
+        /// Verifica si la cadena de fecha tiene el formato válido "dd/MM/yyyy".
+        /// </summary>
+        /// <param name="fecha">La cadena que representa la fecha.</param>
+        /// <returns>True si la cadena tiene el formato válido, de lo contrario, False.</returns>
         private bool EsFormatoFechaValido(string fecha)
         {
 
@@ -266,6 +274,12 @@ namespace Manejador_de_Equipos
                 return false;
             }
         }
+
+        /// <summary>
+        /// Verifica si la fecha ingresada es pasada o igual a la fecha actual.
+        /// </summary>
+        /// <param name="fecha">La cadena que representa la fecha.</param>
+        /// <returns>True si la fecha es pasada o igual a la fecha actual, de lo contrario, False.</returns>
         private bool EsFechaPasada(string fecha)
         {
             if (EsFormatoFechaValido(fecha))
@@ -273,14 +287,13 @@ namespace Manejador_de_Equipos
                 DateTime fechaIngresada = DateTime.ParseExact(fecha, "dd/MM/yyyy", CultureInfo.InvariantCulture);
                 DateTime fechaActual = DateTime.Now;
 
-                // Verificar si la fecha ingresada es anterior a la fecha actual
                 if (fechaIngresada <= fechaActual)
                 {
-                    return true; // La fecha es pasada o igual a la fecha actual
+                    return true; 
                 }
             }
 
-            return false; // La fecha no es válida o es futura
+            return false;
         }
 
         /// <summary>
@@ -296,18 +309,28 @@ namespace Manejador_de_Equipos
                      .ToArray()
             ).ToLower();
         }
+
+        /// <summary>
+        /// Obtiene una colección de equipos. (Implementación de la interfaz IAcciones)
+        /// </summary>
+        /// <returns>Colección de equipos de tipo NuevoEquipoFutbol.</returns>
         MiColeccion<NuevoEquipoFutbol> IAcciones.ObtenerEquipos()
         {
             MiColeccion<NuevoEquipoFutbol> equiposTipoNuevo = new MiColeccion<NuevoEquipoFutbol>();
             return equiposTipoNuevo;
         }
 
-        
+        /// <summary>
+        /// Método no implementado. Lanza una excepción NotImplementedException.
+        /// </summary
         public void ActualizarEquipos(MiColeccion<NuevoEquipoFutbol> miColeccion)
         {
             throw new NotImplementedException();
         }
-        
+
+        /// <summary>
+        /// Método no implementado. Lanza una excepción NotImplementedException.
+        /// </summary>
         public int OrdenarPorTopico(string ascendenteODescendente, string topico)
         {
             throw new NotImplementedException();

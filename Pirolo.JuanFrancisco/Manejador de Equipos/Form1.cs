@@ -11,7 +11,9 @@ using System.Text;
 namespace Manejador_de_Equipos
 {
 
-
+    /// <summary>
+    /// Formulario principal para la gestión de equipos de fútbol.
+    /// </summary>
     public partial class frmEquipos : Form, IAcciones
     {
         private delegate void CambiarImagenDescansoDelegate(string rutaImagen);
@@ -32,13 +34,15 @@ namespace Manejador_de_Equipos
         private SaveFileDialog saveDialog;
         private bool fotoVisible = false; // Variable de control para la visibilidad de la foto
         private OpinionUsuario opinionUsuario;
-        /// <summary>
-        /// Constructor del formulario frmEquipos. Inicializa el formulario, deshabilita la capacidad de maximizar,
-        /// establece la fecha de inicio de sesión y el nombre del usuario, inicializa una colección de equipos y agrega equipos por defecto.
-        /// </summary>
-        /// <param name="fechaInicioSesion">La fecha de inicio de sesión del usuario.</param>
-        /// <param name="nombre">El nombre del usuario.</param>
 
+
+
+        /// <summary>
+        /// Constructor de la clase frmEquipos.
+        /// </summary>
+        /// <param name="fechaInicioSesion">Fecha de inicio de sesión.</param>
+        /// <param name="nombre">Nombre del usuario.</param>
+        /// <param name="perfil">Perfil del usuario.</param>
         public frmEquipos(DateTime fechaInicioSesion, string nombre, string perfil)
         {
             InitializeComponent();
@@ -61,11 +65,8 @@ namespace Manejador_de_Equipos
         }
 
         /// <summary>
-        /// Maneja el evento de cierre del formulario, mostrando un mensaje de confirmación antes de cerrar la aplicación.
+        /// Maneja el evento FormClosing del formulario.
         /// </summary>
-        /// <param name="sender">El objeto que generó el evento.</param>
-        /// <param name="e">Argumentos del evento.</param>
-
         private void frmEquipos_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -80,12 +81,12 @@ namespace Manejador_de_Equipos
                     Application.Exit();
                 }
             }
-
-
-
-
         }
 
+        /// <summary>
+        /// Actualiza la lista de equipos en el formulario.
+        /// </summary>
+        /// <param name="miColeccion">Colección de equipos a mostrar.</param>
         public void ActualizarEquipos(MiColeccion<NuevoEquipoFutbol> miColeccion)
         {
             foreach (NuevoEquipoFutbol equipo in miColeccion.elementos)
@@ -94,12 +95,9 @@ namespace Manejador_de_Equipos
             }
         }
 
-
         /// <summary>
-        /// Abre un formulario para agregar un equipo y permite la actualización si se selecciona un elemento en la lista de equipos.
+        /// Maneja el evento Click del botón para agregar un nuevo equipo.
         /// </summary>
-        /// <param name="sender">El objeto que generó el evento.</param>
-        /// <param name="e">Argumentos del evento.</param>
         private void btnAgregar_Click_1(object sender, EventArgs e)
         {
             if (usuarioPuedeCrear || usuarioPuedeActualizar) //administrador o supervisor
@@ -129,13 +127,10 @@ namespace Manejador_de_Equipos
             }
 
         }
-        //error en guardado y modificar
 
         /// <summary>
-        /// Se ejecuta al cargar el formulario, muestra información del usuario y deserializa la colección de equipos.
+        /// Maneja el evento Load del formulario y verifica los perfiles otorgando distintos permisos de manejo.
         /// </summary>
-        /// <param name="sender">El objeto que generó el evento.</param>
-        /// <param name="e">Argumentos del evento.</param>
         private void frmEquipos_Load_1(object sender, EventArgs e)
         {
             if (perfil == "administrador")
@@ -164,17 +159,20 @@ namespace Manejador_de_Equipos
             //DeserializarColeccion();
 
         }
+
+        /// <summary>
+        /// Actualiza la lista de equipos en el formulario con una nueva lista de datos.
+        /// </summary>
+        /// <param name="nuevaLista">Nueva lista de datos de equipos.</param>
         public void ActualizarEquiposDatos(List<NuevoEquipoFutbol> nuevaLista)
         {
-            // Actualizar la lista de equipos en el formulario
             lstEquipos.Items.Clear();
             lstEquipos.Items.AddRange(nuevaLista.ToArray());
         }
+
         /// <summary>
-        /// Abre un formulario de información de equipos y gestiona su cierre.
+        /// Maneja el evento Click del botón de información. Y muestra un formulario de información de los equipos.
         /// </summary>
-        /// <param name="sender">El objeto que generó el evento.</param>
-        /// <param name="e">Argumentos del evento.</param>
         private void btnInformacion_Click(object sender, EventArgs e)
         {
             frmInfoEquipos infoEquipo = new frmInfoEquipos();
@@ -193,7 +191,7 @@ namespace Manejador_de_Equipos
 
 
         /// <summary>
-        /// Elimina un elemento seleccionado de la lista de equipos.
+        /// Elimina un elemento seleccionado de la lista de equipos y de la base de datos.
         /// </summary>
         /// <param name="sender">El objeto que generó el evento.</param>
         /// <param name="e">Argumentos del evento.</param>
@@ -203,20 +201,14 @@ namespace Manejador_de_Equipos
             {
                 if (lstEquipos.SelectedItem != null)
                 {
-                    // Mostrar un cuadro de diálogo para confirmar la eliminación
                     DialogResult resultado = MessageBox.Show("¿Estás seguro que deseas eliminar este equipo?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
                     {
-                        // Obtén el equipo seleccionado
                         NuevoEquipoFutbol equipoSeleccionado = (NuevoEquipoFutbol)lstEquipos.SelectedItem;
                         lstEquipos.Items.Remove(lstEquipos.SelectedItem);
-                        // Elimina el equipo de la colección genérica
 
                         equiposDeColeccionGenerica -= equipoSeleccionado;
-
-                        //NuevoEquipoFutbol otroEquipo = new NuevoEquipoFutbol(equipoSeleccionado.NombreEquipo,"",0, new DateTime(2023, 11, 15),2);
-
                         NuevoEquipoFutbol nuevoEquipo = new NuevoEquipoFutbol();
                         nuevoEquipo.NombreEquipo = equipoSeleccionado.NombreEquipo;
 
@@ -231,10 +223,6 @@ namespace Manejador_de_Equipos
                         {
                             MessageBox.Show($"Error al intentar eliminar el equipo: {ex.Message}", "Error de Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-
-
-
-
                     }
                 }
                 else
@@ -446,6 +434,8 @@ namespace Manejador_de_Equipos
             }
 
         }
+
+
         /// <summary>
         /// Abre un formulario para ver la información de usuarios.
         /// </summary>
@@ -457,6 +447,11 @@ namespace Manejador_de_Equipos
             visualizador.Show();
         }
 
+
+        /// <summary>
+        /// Obtiene la colección de equipos desde la lista de equipos del formulario.
+        /// </summary>
+        /// <returns>Colección de equipos de tipo NuevoEquipoFutbol.</returns>
         MiColeccion<NuevoEquipoFutbol> IAcciones.ObtenerEquipos()
         {
             MiColeccion<NuevoEquipoFutbol> equiposTipoNuevo = new MiColeccion<NuevoEquipoFutbol>();
@@ -471,6 +466,12 @@ namespace Manejador_de_Equipos
 
             return equiposTipoNuevo;
         }
+
+        /// <summary>
+        /// Quita tildes y convierte una cadena a minúsculas.
+        /// </summary>
+        /// <param name="input">La cadena de entrada.</param>
+        /// <returns>La cadena sin tildes y en minúsculas.</returns>
         string IAcciones.QuitarTildesYConvertirAMinusculas(string input)
         {
             return new string(
@@ -479,6 +480,11 @@ namespace Manejador_de_Equipos
                      .ToArray()
             ).ToLower();
         }
+
+        /// <summary>
+        /// Cambia la imagen en el PictureBox de descanso.
+        /// </summary>
+        /// <param name="rutaImagen">La ruta de la nueva imagen.</param>
         private void CambiarImagenDescanso(string rutaImagen)
         {
             if (InvokeRequired)
@@ -493,10 +499,11 @@ namespace Manejador_de_Equipos
             ImagenCambiada?.Invoke(rutaImagen);
         }
 
-
+        /// <summary>
+        /// Maneja el evento Click del botón para mostrar u ocultar la foto de descanso.
+        /// </summary>
         private void button3_Click(object sender, EventArgs e)
         {
-            // Invierte el valor de la variable de control
             fotoVisible = !fotoVisible;
 
             if (fotoVisible)
@@ -508,8 +515,6 @@ namespace Manejador_de_Equipos
                 button3.Text = "Volver al formulario";
                 int newX = (Width - button3.Width) / 2;
                 button3.Location = new Point(newX, button3.Location.Y);
-
-
             }
             else
             {
@@ -518,29 +523,26 @@ namespace Manejador_de_Equipos
                 button3.Text = "Me voy al descanso...";
             }
         }
+
+        /// <summary>
+        /// Maneja el evento ClasificarAplicacion de la clase OpinionUsuario.
+        /// </summary>
+        /// <param name="clasificacion">La clasificación proporcionada por el usuario.</param>
         private void ManejarClasificacion(string clasificacion)
         {
             MessageBox.Show($"Muchas gracias por compartir tu opinión, continúa disfrutando de esta aplicación");
 
-            // Crear un nuevo Label
             Label nuevoLabel = new Label();
             nuevoLabel.Text = $"Tu opinión: {clasificacion}";
             nuevoLabel.AutoSize = true;
-
-            // Establecer el fondo blanco y letras en dorado
             nuevoLabel.BackColor = Color.Black;
             nuevoLabel.ForeColor = Color.Gold;
 
-            // Utilizar Invoke para agregar el Label en el hilo de la interfaz de usuario
+            //Invoke para agregar el Label en el hilo de la interfaz de usuario
             Invoke(new Action(() =>
             {
-                // Añadir el Label al formulario
                 Controls.Add(nuevoLabel);
-
-                // Ajustar la posición del Label (por ejemplo, 10 píxeles desde la parte superior)
                 nuevoLabel.Location = new Point(950, 10);
-
-                // Llevar el Label al frente (arriba de todo)
                 nuevoLabel.BringToFront();
             }));
         }

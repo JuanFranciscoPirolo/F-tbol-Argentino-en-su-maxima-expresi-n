@@ -5,6 +5,9 @@ using System.Timers;
 
 namespace Manejador_de_Equipos
 {
+    /// <summary>
+    /// Clase que gestiona el descanso y la rotación de imágenes.
+    /// </summary>
     public class GestorDescanso
     {
         private Thread hiloImagenes;
@@ -15,23 +18,29 @@ namespace Manejador_de_Equipos
             @"../../../../Manejador de Equipos\Resources\cancha_river.jpg" };
         private int indiceImagenActual = 0;
 
-
+        /// <summary>
+        /// Evento que se dispara cuando la imagen cambia.
+        /// </summary>
         public event Action<string> ImagenCambiada;
 
+        /// <summary>
+        /// Constructor de la clase <see cref="GestorDescanso"/>.
+        /// </summary>
         public GestorDescanso()
         {
             // Inicia el hilo para cambiar imágenes
             hiloImagenes = new Thread(CambiarImagenes);
             hiloImagenes.IsBackground = true;
             hiloImagenes.Start();
-
-            // Inicia el temporizador de inactividad
             temporizadorInactividad = new System.Timers.Timer();
             temporizadorInactividad.Interval = 10000; // 10 segundos
             temporizadorInactividad.AutoReset = false; // Solo se activa una vez, después de cada intervalo
             temporizadorInactividad.Start();
         }
 
+        /// <summary>
+        /// Método que cambia las imágenes de manera continua.
+        /// </summary>
         private void CambiarImagenes()
         {
 
@@ -52,7 +61,9 @@ namespace Manejador_de_Equipos
             }
         }
 
-
+        /// <summary>
+        /// Método que muestra la siguiente imagen en la secuencia.
+        /// </summary>
         private void MostrarSiguienteImagen()
         {
             // Actualiza la imagen actual
