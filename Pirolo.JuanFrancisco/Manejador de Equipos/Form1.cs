@@ -177,6 +177,7 @@ namespace Manejador_de_Equipos
                 {
                     this.Show();
                 }
+                
             };
 
             infoEquipo.Show();
@@ -508,7 +509,25 @@ namespace Manejador_de_Equipos
         }
         private void ManejarClasificacion(string clasificacion)
         {
+
             MessageBox.Show($"Muchas gracias por compartir tu opinión, continúa disfrutando de esta aplicación");
+            // Crear un nuevo Label
+            Label nuevoLabel = new Label();
+            nuevoLabel.Text = $"Tu clasificación: {clasificacion}";
+            nuevoLabel.AutoSize = true;
+
+            // Utilizar Invoke para agregar el Label en el hilo de la interfaz de usuario
+            Invoke(new Action(() =>
+            {
+                // Añadir el Label al formulario
+                Controls.Add(nuevoLabel);
+
+                // Ajustar la posición del Label (por ejemplo, 10 píxeles desde la parte superior)
+                nuevoLabel.Location = new Point(10, 80);
+
+                // Llevar el Label al frente (arriba de todo)
+                nuevoLabel.BringToFront();
+            }));
         }
         private void MostrarDialogoClasificacion()
         {
