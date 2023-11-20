@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Manejador_de_Equipos
 {
-    
+
 
     public partial class frmEquipos : Form, IAcciones
     {
@@ -184,7 +184,7 @@ namespace Manejador_de_Equipos
                 {
                     this.Show();
                 }
-                
+
             };
 
             infoEquipo.Show();
@@ -503,7 +503,11 @@ namespace Manejador_de_Equipos
             {
                 // Muestra la foto
                 pictureBoxDescanso.Visible = true;
-                button3.Text = "Descansando...";
+
+                button3.BringToFront();
+                button3.Text = "Volver al formulario";
+                int newX = (Width - button3.Width) / 2;
+                button3.Location = new Point(newX, button3.Location.Y);
 
 
             }

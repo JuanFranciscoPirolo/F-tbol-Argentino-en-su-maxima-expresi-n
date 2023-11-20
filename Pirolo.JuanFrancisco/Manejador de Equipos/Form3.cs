@@ -14,19 +14,19 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Globalization;
 using Microsoft.VisualBasic;
 
+
+public delegate void ValidarStringDelegate(System.Windows.Forms.TextBox textBox, string errorMessage);
+
 namespace Manejador_de_Equipos
 {
-    
     public partial class frmAgregarEquipo : Form, IAcciones
     {
-        private delegate bool ValidarFechaDelegate(string fecha);
-        private ValidarFechaDelegate validarFechaDelegate;
         private bool cerrarFormularioAgregar = true;
         private bool estasSeguro = true;
         private bool equipoActualizado = false;
         private AccesoDatos ado;
-        
         private MiColeccion<NuevoEquipoFutbol> miColeccion = new MiColeccion<NuevoEquipoFutbol>();
+        private ValidarStringDelegate validarStringDelegate;
 
         public NuevoEquipoFutbol equipo;
         public bool formularioIniciado { get; private set; }
@@ -40,7 +40,7 @@ namespace Manejador_de_Equipos
             this.MaximizeBox = false;
             this.ado = new AccesoDatos();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            validarFechaDelegate = new ValidarFechaDelegate(EsFechaPasada);
+            validarStringDelegate = ValidarString;
         }
 
 
@@ -204,7 +204,7 @@ namespace Manejador_de_Equipos
         /// </summary>
         private void txtNombreClub_TextChanged(object sender, EventArgs e)
         {
-            ValidarString(txtNombreClub, "Ingrese un nombre correcto");
+            validarStringDelegate.Invoke(txtNombreClub, "Ingrese un nombre correcto");
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace Manejador_de_Equipos
         /// </summary>
         private void txtApodoClub_TextChanged(object sender, EventArgs e)
         {
-            ValidarString(txtApodoClub, "Ingrese un apodo correcto");
+            validarStringDelegate.Invoke(txtApodoClub, "Ingrese un apodo correcto");
         }
         private void ValidarEnteros(System.Windows.Forms.TextBox textBox, string errorMessage)
         {
@@ -259,7 +259,7 @@ namespace Manejador_de_Equipos
 
             if (DateTime.TryParseExact(fecha, formatoFecha, null, System.Globalization.DateTimeStyles.None, out _))
             {
-                return validarFechaDelegate(fecha);
+                return true;
             }
             else
             {
