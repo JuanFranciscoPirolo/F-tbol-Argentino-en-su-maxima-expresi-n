@@ -22,8 +22,8 @@ namespace Manejador_de_Equipos
 
         private void EsperarYMostrarDialogo()
         {
-            // Espera 5 minutos (300,000 milisegundos)
-            Thread.Sleep(10000);
+            // Espera 2 minutos (120,000 milisegundos)
+            Thread.Sleep(120000);
 
             // Muestra el diálogo de clasificación
             MostrarDialogoClasificacion();

@@ -509,12 +509,16 @@ namespace Manejador_de_Equipos
         }
         private void ManejarClasificacion(string clasificacion)
         {
-
             MessageBox.Show($"Muchas gracias por compartir tu opinión, continúa disfrutando de esta aplicación");
+
             // Crear un nuevo Label
             Label nuevoLabel = new Label();
-            nuevoLabel.Text = $"Tu clasificación: {clasificacion}";
+            nuevoLabel.Text = $"Tu opinión: {clasificacion}";
             nuevoLabel.AutoSize = true;
+
+            // Establecer el fondo blanco y letras en dorado
+            nuevoLabel.BackColor = Color.Black;
+            nuevoLabel.ForeColor = Color.Gold;
 
             // Utilizar Invoke para agregar el Label en el hilo de la interfaz de usuario
             Invoke(new Action(() =>
@@ -523,12 +527,13 @@ namespace Manejador_de_Equipos
                 Controls.Add(nuevoLabel);
 
                 // Ajustar la posición del Label (por ejemplo, 10 píxeles desde la parte superior)
-                nuevoLabel.Location = new Point(10, 80);
+                nuevoLabel.Location = new Point(950, 10);
 
                 // Llevar el Label al frente (arriba de todo)
                 nuevoLabel.BringToFront();
             }));
         }
+
         private void MostrarDialogoClasificacion()
         {
             // Llama al método correspondiente de la instancia de OpinionUsuario
