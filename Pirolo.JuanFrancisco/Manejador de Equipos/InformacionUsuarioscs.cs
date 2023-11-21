@@ -21,9 +21,12 @@ namespace Manejador_de_Equipos
         {
             if (File.Exists("usuarios.log"))
             {
-                string contenido = File.ReadAllText("usuarios.log");
-                // Agrega saltos de línea después de cada línea leída
-                contenido = contenido.Replace(Environment.NewLine, Environment.NewLine + Environment.NewLine);
+                string[] lineas = File.ReadAllLines("usuarios.log");
+
+                // Usa Join para unir las líneas con saltos de línea
+                string contenido = string.Join(Environment.NewLine, lineas);
+
+                // Asigna el contenido con saltos de línea al cuadro de texto
                 txtLog.Text = contenido;
             }
             else
