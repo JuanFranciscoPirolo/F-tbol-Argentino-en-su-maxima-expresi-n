@@ -18,7 +18,7 @@ namespace Manejador_de_Equipos
     {
         private delegate void CambiarImagenDescansoDelegate(string rutaImagen);
         private event CambiarImagenDescansoDelegate ImagenCambiada;
-
+        
 
         private GestorDescanso gestorDescanso;
         private AccesoDatos ado;
@@ -505,12 +505,12 @@ namespace Manejador_de_Equipos
         private void button3_Click(object sender, EventArgs e)
         {
             fotoVisible = !fotoVisible;
-
+            Point posicionOriginal = new Point(button3.Location.X + - 180, button3.Location.Y);
             if (fotoVisible)
             {
+                
                 // Muestra la foto
                 pictureBoxDescanso.Visible = true;
-
                 button3.BringToFront();
                 button3.Text = "Volver al formulario";
                 int newX = (Width - button3.Width) / 2;
@@ -521,6 +521,8 @@ namespace Manejador_de_Equipos
                 // Oculta la foto
                 pictureBoxDescanso.Visible = false;
                 button3.Text = "Me voy al descanso...";
+                button3.Location = posicionOriginal;
+
             }
         }
 
