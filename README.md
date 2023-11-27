@@ -1,4 +1,4 @@
-# Futbol Argentino en su Máxima Expresión
+# Fútbol Argentino en su Máxima Expresión
 
 ## Sobre Mí
 ¡Hola! Soy Juan Francisco Pirolo, un apasionado fanático de Racing. El fútbol es mi pasión y, como todo lo que pienso y hago gira en torno al fútbol, se me ocurrió la gran idea de crear una aplicación que represente la grandeza de los equipos de fútbol argentino.
